@@ -1,0 +1,356 @@
+
+%!TEX encoding = UTF-8 Unicode
+% !TEX TS-program = lualatex
+\documentclass[12pt,%
+addpoints,%
+%answers%
+]{exam}
+
+\usepackage[frenchb]{babel}
+\usepackage{tikz,tkz-tab, tkz-base}
+\tikzset{every picture/.style={execute at begin picture={\shorthandoff{:;!?};}}}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [shape=rectangle,inner sep=0pt]
+\usepackage{pgfplots}
+\usepackage{multicol}
+%--------------------------------------------------------------------------------------
+\usepackage{enumerate}
+\usepackage{fourier}
+\usepackage{xspace}
+\usepackage{amsmath,amssymb,amstext,makeidx}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage[euler]{textgreek}
+\usepackage{textcomp,enumitem}
+\newcommand{\euro}{\eurologo{}}
+%\usepackage{pst-plot,pst-tree,pst-func,pstricks-add}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\usepackage[left=3.5cm, right=3.5cm, top=1.9cm, bottom=2.4cm]{geometry}
+\newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\usepackage{numprint}
+\renewcommand\arraystretch{1.1}
+\newcommand{\e}{\text{e}}
+%\frenchbsetup{StandardLists=true}
+\usepackage{babel}
+\usepackage{enumerate}
+%---Pour les arbres de probabilités----------------------------------------------------
+\usepackage{pstricks,pst-node,pst-tree}
+\usepackage{pst-plot,pst-tree,pst-func,pstricks-add}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{tabularx}
+%---Définition de la page et des marges------------------------------------------------
+\setlength{\paperheight}{297mm}
+\setlength{\paperwidth}{210mm}
+\setlength{\textheight}{26cm}
+\setlength{\textwidth}{15cm}
+\setlength{\leftmargin}{-1cm}%
+\setlength{\rightmargin}{1cm}%
+%---Définition de l'entête de page et du pied de page----------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{Nom : \\ Prénom :}
+  {}
+  {classe : TSTMG \\ Date : \today}
+\firstpagefooter{LPO G. BRASSENS}{Page \thepage\ / \numpages}{Session 2021-22}
+\runningheadrule
+\runningfootrule
+\lhead{Nom : \\ Prénom :}
+\chead{Devoir Commun 17 Février 2022\small{ - genCode : 3953286104}}
+\rhead{TSTMG}
+\runningfooter{LPO G. BRASSENS}{Page \thepage\ / \numpages}{Session 2021-22}
+
+
+
+%---Définition de Question-------------------------------------------------------------
+\def\Question{	
+	\renewcommand*{\questionlabel}{\fbox{Exercice \thequestion : }}
+	\question
+}
+\def\Part{
+	\renewcommand*{\partlabel}{\fbox{\thepartno : }}
+	\part
+}
+%--------------------------------------------------------------------------------------
+
+%\usepackage{xparse,xpatch}
+% redefine \part command to be \mypart
+\appto\parts{\let\exampart\part\let\part\mypart}
+
+\def\multiplechoice{54}
+\def\freeresponse{46}
+\makeatletter
+\ExplSyntaxOn
+% this will become a sequence of the part numbers and scores
+% like: 1a&10&, 1b&8&, 1c&9&, 2a&6, 2b&8&, 3&12&, 4&14&, ...
+\seq_new:N \g_part_scores_seq
+\tl_new:N \g_grade_table_tl
+
+\int_new:N \g_total_score_int% this will be the exam score
+\int_new:N \g_number_of_scores_int
+\NewDocumentCommand\mypart{o}{
+  \IfNoValueTF{#1}{\exampart}{
+    % don't do anything special inside solutions
+    \if@insolution\exampart[#1]
+    \else\exampart[#1]
+      % store both the part number and score in \g_part_scores_seq
+      % together with their column separators for the tabular env
+      \tl_set:Nx \l_tmpa_tl { \arabic{question}\alph{partno} }
+      \tl_put_right:Nn \l_tmpa_tl {&}
+      \tl_put_right:No \l_tmpa_tl {#1}
+      \tl_put_right:Nn \l_tmpa_tl {&}
+      \seq_gput_right:No \g_part_scores_seq \l_tmpa_tl
+      % increment the running total and number of scores
+      \int_gadd:Nn \g_total_score_int {#1}
+      \int_gincr:N \g_number_of_scores_int
+    \fi
+  }
+}
+% print row #1 of the part scores in the grade table
+\cs_new:Nn \__add_row_to_grade_table:n {
+   \tl_gput_right:Nx \g_grade_table_tl {\seq_item:Nn \g_part_scores_seq {#1}}
+   \tl_gput_right:Nn \g_grade_table_tl { & }
+   \tl_gput_right:Nx \g_grade_table_tl {\seq_item:Nn \g_part_scores_seq {#1+\g_number_of_scores_int/2}}
+   \tl_gput_right:Nn \g_grade_table_tl {\\\hline}
+}
+\NewDocumentCommand\GradeTable{}{% the new grade table
+  % we need an exam number of scores so add two
+  % empty cells if we have an odd number
+  \int_if_odd:nT {\g_number_of_scores_int} {
+      \seq_gput_right:Nn \g_part_scores_seq {&}
+      \int_ginc:N \g_number_of_scores_int
+  }
+  \int_gset:Nn \g_number_of_scores_int {\g_number_of_scores_int}
+  \int_gadd:Nn \g_total_score_int { \multiplechoice }
+  \int_gadd:Nn \g_total_score_int { \freeresponse }
+  % create the grade table
+  \tl_gclear:N \g_grade_table_tl
+  \int_step_function:nnN {1} {\g_number_of_scores_int/2} \__add_row_to_grade_table:n
+  \begin{tabular}{|c|c|c|c|c|c|}\hline
+    Question & Points~Possibles & Points~Acquis & Question & Points~Possibles & Points~Acquis \\\hline
+    \tl_use:N \g_grade_table_tl
+    \multicolumn2{c|}{}&\multicolumn{2}{r|}{\textit{Total}}
+        & \int_use:N \g_total_score_int & \\\cline{3-6}
+  \end{tabular}
+}
+\ExplSyntaxOff
+\makeatother
+%-------------------------------------------------------------------------------------
+
+
+\hsword{Score:}
+\usepackage{lipsum}
+\usepackage{mdframed}
+\renewenvironment{solution}
+{\begingroup\par\parshape0%
+\begin{mdframed}[%skipabove=\baselineskip,
+%                 innertopmargin=\baselineskip,
+%                 innerbottommargin=\baselineskip,
+                 userdefinedwidth=\textwidth,
+                 backgroundcolor=blue!5]
+\textbf{Solution:}\enspace\ignorespaces}
+{\end{mdframed}\par\endgroup}
+
+
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 							% horizontal line and its thickness
+\center 
+ 
+% University
+\textsc{\LARGE LPO G.BRASSENS}\\[1cm]
+
+% Document info
+\textsc{\Large Devoir Commun 17 Février 2022\\ \small{genCode : 3953286104}}\\[5cm]
+%\textsc{\large COURSECODE}\\[1cm] 										% Course Code
+\HRule \\[0.8cm]
+{ \huge \bfseries Mathématiques}\\[0.7cm]								% Assignment
+\HRule \\[5cm]
+\large
+\emph{Consignes:}\\%[1.5cm]													% Author info
+\fbox{%
+\begin{minipage}{\textwidth}
+   \begin{itemize}[label=$*$]
+		\item Vous rédigerez vos réponses directement sur le sujet dans les espaces prévus à cet effet.
+		\item La calculatrice est autorisée.
+		\item L'examen est noté sur un total de 40 points.
+		\item L'épreuve dure 2 heures.
+		\item Vous devez écrire votre nom et prénom sur chaque entête de page dans la zone prévue à cet effet.
+	\end{itemize}
+\end{minipage}
+}
+%\includegraphics[width=0.6\textwidth]{images/TU_delft_logo.jpg}\\[1cm] 	% University logo
+\vfill 
+\end{titlepage}
+
+\clearpage
+
+
+
+	\begin{questions}
+    
+        \Question 
+			\begin{description}
+				\item Dans un lycée, on considère les élèves ayant obtenu le baccalauréat STMG :
+					\setlength\parindent{9mm}
+					\begin{itemize}[label=\textbullet]
+						\item 65\,\% de ces élèves poursuivent leurs études en BTS ou DUT et parmi eux, 44\,\% après l'obtention du BTS ou DUT poursuivent leurs études et obtiennent une licence.
+						\item Les autres élèves poursuivent d'autres études après le baccalauréat, et parmi eux, 42\,\% obtiennent une licence.
+					\end{itemize}
+					\setlength\parindent{0mm}
+					On appelle :			
+					\begin{description}
+						\item[$T$] : l'évènement: \og pour suivre ses études en BTS ou DUT\fg{} ;
+						\item[$A$] : l'évènement: \og pour suivre d'autres études après le baccalauréat\fg{} ; 
+						\item[$L$] : l' évènement : \og obtenir une licence \fg.
+						\item[$\overline{L}$]  désigne l'évènement contraire de l'évènement $L$.
+					\end{description}
+			\end{description}
+			\vspace{0.25cm}
+			\begin{parts}
+				\Part[6] compléter l'arbre suivant qui modélise la situation:
+                    \begin{center}
+                        \begin{tikzpicture}[xscale=0.75,yscale=0.75]
+                            \tikzstyle{fleche}=[->,>=latex,thick]
+                            \tikzstyle{noeud}=[fill=white,circle]
+                            \tikzstyle{feuille}=[fill=white]
+                            \tikzstyle{etiquette}=[midway,fill=white,draw]
+                            \def\DistanceInterNiveaux{4}
+                            \def\DistanceInterFeuilles{2}
+                            \def\NiveauA{(0)*\DistanceInterNiveaux}
+                            \def\NiveauB{(1.5)*\DistanceInterNiveaux}
+                            \def\NiveauC{(2.5)*\DistanceInterNiveaux}
+                            \def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+                            \node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {$ $};
+                            \node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$T$};
+                            \node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$L$};
+                            \node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{L}$};
+                            \node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$A$};
+                            \node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$L$};
+                            \node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{L}$};
+                            \draw[fleche] (R)--(Ra) node[etiquette] {$ $};
+                            \draw[fleche] (Ra)--(Raa) node[etiquette] {$ $};
+                            \draw[fleche] (Ra)--(Rab) node[etiquette] {$ $};
+                            \draw[fleche] (R)--(Rb) node[etiquette] {$ $};
+                            \draw[fleche] (Rb)--(Rba) node[etiquette] {$ $};
+                            \draw[fleche] (Rb)--(Rbb) node[etiquette] {$ $};
+                        \end{tikzpicture}
+                    \end{center}
+				\Part[1] Déterminer la valeur de la probabilité $p(T \cap L)$.
+                    \fillwithlines{20mm}
+				\Part[1] Montrer que $p(L) = 43.3\%$.
+                    \fillwithlines{20mm}
+				\Part[1] Déterminer la probabilité d'avoir suivi une formation en BTS ou DUT sachant que l'on a obtenu une licence. On arrondira le résultat à  $0,01$\,\%.
+                    \fillwithlines{20mm}
+                \Part[2] Déterminer la valeur arrondie à  $0,01$\,\% de la probabilité $p_L(A)$. Interpréter.
+                    \fillwithlines{20mm}
+			\end{parts}
+\clearpage
+
+    \Question 
+			Le tableau suivant donne le nombre de morts sur les routes françaises par an de 1998 à 2006.
+ 
+			\begin{center}
+				\begin{tabularx}{\linewidth}{|m{2cm}|*{9}{>{\centering \arraybackslash}X|}}\hline
+					Année &1998 &1999 &2000 &2001 &2002 &2003 &2004 &2005 &2006\\ \hline
+					Rang $\left(x_i\right)$& 1 &2 &3 &4 &5 &6 &7 &8 &9\\ \hline
+					Nombre de morts $\left(y_i\right)$& 7586 & 6825 & 7939 & 4997 & 6499 & 7730 & 8057 & 5612 & 6388\\ \hline
+					\multicolumn{10}{r}{\footnotesize Source: d'après www.securite-routiere.gouv.fr}
+				\end{tabularx}
+			\end{center}
+			\begin{parts}
+				\Part[2] Sur le graphique ci-dessous, on a représenté une partie du nuage de points $M_i\left(x_i~;~y_i\right)$.\\
+				Compléter ce nuage de points à l'aide du tableau en plaçant le point d'abscisse 4 et le point d'abscisse 7.
+				\begin{center}
+					\begin{tikzpicture}[scale=0.75]
+						\begin{axis}[
+								grid= both ,
+								minor tick num=1,
+								minor grid style={line width=.1pt, dashed	},
+								major grid style={line width=.4pt},
+								width=0.8\textwidth ,
+								xlabel = {Rang $\left(x_i\right)$} ,
+								ylabel = {Nombre de morts $\left(y_i\right)$} ,
+								xmin = 0, xmax = 15,
+								ymin = 2500, ymax = 10000,
+								yticklabel style={
+									/pgf/number format/.cd,%
+									scaled y ticks = false,
+									set thousands separator={},
+									fixed
+								},
+								%legend entries={Courbe 1, Courbe 2},
+								%legend style={at={(0,1)},anchor=north west}
+								]
+							\addplot [only marks,mark=*] coordinates {(1,7586) (2,6825) (3,7939)  (5,6499) (6, 7730)  (8,5612) (9, 6388)}; % Tracé point à point
+							\addplot [very thick] expression[domain=0:15]{9142.722-485.967*x}; % Équation analytique
+							\addplot [red,dashed,very thick] expression[domain=0:13]{2800}; % Équation analytique
+%							\addplot [red,only marks,mark=*] coordinates {(4,4997) (7,8057)}; % Tracé point à point
+						\end{axis}
+					\end{tikzpicture}
+				\end{center}
+				\part[2] Sur le graphique ci-dessus est tracée la droite d'ajustement. À l'aide de cette droite d'ajustement, par lecture graphique, déterminer une prévision du nombre de morts en 2010.
+				    \fillwithlines{10mm}
+				\part[2] On a observé en réalité que le nombre de personnes ayant perdu la vie sur les routes françaises en 2010 a diminué de 14\% par rapport à l'année 2000.
+Quel est le nombre réel de victimes sur les routes françaises en 2010 ? On donnera le résultat arrondi à l'unité.
+					\fillwithlines{20mm}
+			\end{parts}
+\clearpage
+    
+    \Question
+				Le tableau suivant indique, sur la période 2002-2012, en France, la proportion de déchets recyclés exprimée en pourcentage des déchets d'emballages ménagers.
+				\begin{center}
+					\begin{tabularx}{1.02\linewidth}{|m{2.5cm}|*{11}{>{\centering \arraybackslash}X|}}\hline
+					Année 		&2002 &2003 &2004 &2005 &2006 &2007 &2008 &2009 &2010 &2011 &2012\\ \hline
+					Pourcentage de
+					déchets recyclés (en \,$\%$)&48.2 &51.7 &61.8 &56.7 &54.5 &49.0 &64.2 &45.8 &53.2 &57.4 &52.5 \\ \hline
+					\end{tabularx}
+				\end{center}
+				\begin{parts}
+					\Part[1] Montrer que le taux global d'évolution, arrondi à l'unité, entre 2006 et 2010 est de $-2$\,\%.
+						\fillwithlines{30mm}
+					\Part[2] Déterminer le taux annuel moyen entre 2006 et 2010. On donnera le résultat en pourcentage arrondi au centième.
+						\fillwithlines{30mm}
+					\Part[2] On conjecture qu'à partir de 2012, le taux annuel est de $+ 4.91$\,\%. Avec ce modèle, quel est le taux de recyclage en 2020 ? On donnera le résultat en pourcentage arrondi au dixième.
+						\fillwithlines{30mm}
+				\end{parts}
+\clearpage
+    
+    \Question
+		Une usine produit des bonbons. Le responsable "production" a modélisé le cout de production de chacune des machines en fonction du poids de bonbons produit pour une machine. Si $x$ est le poids de bonbons produit alors $C(x)$ donne le coût de production au kilogramme en fonction de $x$ avec :
+		\begin{center}
+			$C(x)=\dfrac{x^{3}}{3} - 7 x^{2} + 45 x + 11$\\
+		\end{center}
+		\begin{parts}
+			\Part[3] Déterminer $C'(x)$, la fonction dérivée de $C(x)$\\
+				\fillwithlines{50mm}
+			\Part[3] Résoudre $C'(x)=0$\\
+				\fillwithlines{70mm}
+			\Part[3] En déduire le signe de $C'$ et les variations de $C$\\
+				\fillwithlines{70mm}
+			\Part[3] Conclure sur la quantité optimale de production et en donner donc le coût minimal au kilogramme\\
+				\fillwithlines{20mm}
+		\end{parts}
+    
+    \end{questions}
+
+\end{document}
+    
