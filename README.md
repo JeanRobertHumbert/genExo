@@ -5,3 +5,7 @@ Génère 2 pdf, le sujet et la correction avec un gencode pour identifier le cor
 
 Attention, il faut préalablement installer MikTex et pour python les packages :
 os, sys, random, unicodedata, numpy, sympy, matplotlib, fractions, subprocess
+
+Méthode :
+  - génération d'un ficher tex (LaTeX)
+  - Compilation avec MikTeX
