@@ -1,0 +1,154 @@
+
+\documentclass[12pt]{article}
+
+\usepackage[fleqn]{amsmath} % Polces mathématiques
+\usepackage[cp1252]{inputenc} 
+\usepackage[T1]{fontenc} % encodage
+\usepackage[french]{babel}
+\usepackage{graphicx}	% graphiques
+\usepackage{color}
+\usepackage{amssymb}% polices mathématiques
+\usepackage[colorlinks=true,linkcolor=blue,bookmarksnumbered]{hyperref}	% hyperliens
+\usepackage[table]{xcolor} %couleurs
+\usepackage[left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry} % mise en page
+\setlength\headheight{0.55cm} % distance à l'entête
+\usepackage{eurosym} % symbôle euro
+\usepackage{fancybox} % boîtes
+\usepackage{setspace} % interligne
+\usepackage{mathrsfs} % police mathématique cursive
+
+
+\usepackage{fancyhdr} % entête amélioré
+\renewcommand{\footrulewidth}{0.4pt}
+\usepackage[french,lined,boxed]{algorithm2e}	% pour les algorithmes
+%\ configuration package algorithm
+\SetKw{Retour}{Afficher}
+\SetKwBlock{Traitement}{Début traitement}{Fin traitement.}
+\SetKw{Afficher}{Afficher}
+
+% environnements pour propriétés, théorèmes, exemples...
+\newenvironment{encadrer}[1]{ \begin{minipage}[c]{16cm}\begin{onehalfspace} \noindent \textbf{#1 :} \par }{\end{onehalfspace}\end{minipage}\par}
+\newenvironment{sanscadre}[1]{\begin{onehalfspace}\vspace{0.2cm}\noindent \textbf{#1 :}\par  \noindent}{\bigskip\par\end{onehalfspace}}
+
+\newcommand{\nouvitem}{\item[$\bullet$]} %nouvelle puce à l'américaine
+\newcommand{\emphref}[1]{\emph{\color{red}{#1}}} % amélioration de la mise en évidence
+\newcommand{\cadre}[1]{\shadowbox{#1}\par} % boîtes de propriétés
+
+\newcommand{\pdfrowcolors}[1]{\rowcolors{1}{#1}{#1}} 
+
+\title{Loi binomiale, cours, première STMG}
+
+
+\author{F.Gaudon}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[L]{}
+\fancyhead[R]{\textit{Loi binomiale, cours, classe de première STMG}}
+\fancyfoot[R]{\includegraphics[width=2cm]{88x31.png}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize \textit{\color{black}\url{http://mathsfg.net.free.fr}}}
+
+
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+
+\section{Schéma de Bernoulli}
+
+\cadre{
+\begin{encadrer}{Définition}
+Deux expériences sont dites indépendantes si le résultat de l'une n'influe pas sur le résultat de l'autre.
+\end{encadrer}
+}
+
+\begin{sanscadre}{Exemple}
+il y a indépendance lorsqu'on lance deux fois de suite une pièce de monnaie.
+\end{sanscadre}
+
+\cadre{
+\begin{encadrer}{Définition}
+On considère une expérience aléatoire ne comportant que deux issues ; l'une appelée \og{}succès\fg{} et l'autre appelée \og{}échec\fg{}. On note $p$ la probabilité de succès et $q$ la probabilité d'échec ($q=1-p$). La répétition de cette expérience $n$ fois de manière indépendante constitue \emphref{un schéma de Bernoulli} de paramètres $n$ et $p$.
+\end{encadrer}
+}
+
+\cadre{
+\begin{encadrer}{Propriété}
+Dans un schéma de Bernoulli, la probabilité d'une liste de résultats est le produit des probabilités de chaque résultat
+\end{encadrer}
+}
+
+\begin{sanscadre}{Exemple}
+\begin{center}
+ \includegraphics[width=6cm]{arbre.png}
+\end{center}
+On contrôle la qualité d'un produit sur une chaîne de production. On prélève 3 produits au hasard. On suppose que les prélèvements sont indépendants. Statistiquement, chaque produit a une probabilité $p=0,05$ d'être défectueux.\\
+Sur l'arbre ci-dessus représentant un schéma de Bernoulli de paramètres $n=3$ et $p=0,05$, la probabilité d'avoir les deux premières expériences qui donnent un succès et la dernière qui donne un échec est $P(SS\bar{S})=0,05^2\times 0,95\approx 0,002$\\
+soit 0,2 \% de chances d'avoir deux produits défectueux sur les trois prélevés.
+\end{sanscadre}
+
+\section{Loi binomiale}
+
+\cadre{
+\begin{encadrer}{Définition}
+Soit un schéma de Bernoulli de paramètres $n$ et $p$ et soit $X$ le nombre de succès obtenus. On dit que $X$ est la \emphref{variable aléatoire} associée à ce schéma.  On dit aussi que la variable aléatoire $X$ suit une \emphref{loi binomiale} de paramètres $n$ et $p$.\\
+Si $k$ est un entier compris entre 0 et $n$, l'événement \og{}on a obtenu $k$ succès\fg{} est noté $X=k$ et sa probabilité est notée $P(X=k)$.
+\end{encadrer}
+}
+
+\begin{sanscadre}{Exemple}
+On considère le problème précédent de test des produits d'une chaîne de production. Les prélèvements étant supposés indépendants les uns des autres, l'expérience constitue un schéma de Bernoulli de paramètres $n=3$ et $p=0,05$. La variable aléatoire $X$ qui compte le nombre de succès suit la loi binomiale de paramètres $n=3$ et $p=0,05$.\\
+On a $P(X=2)=P(SS\bar{S}\cap S\bar{S}S\cap SS\bar{S})$\\
+ car trois chemins permettent d'obtenir deux succès c'est à dire deux objets défectueux.\\
+D'où $P(X=2)=P(SS\bar{S})+P(S\bar{S}S)+P(SS\bar{S})$\\
+donc $P(X=2)=0,05^2\times 0,95+0,95\times 0,05\times 0,95+0,95\times 0,05^2=3\times 0,05^2\times 0,95=0,007$\\
+soit une probabilité très faible de 0,007 d'avoir deux produits défectueux.
+\end{sanscadre}
+
+\begin{sanscadre}{Calcul pratique de $P(X=k)$ et $P(X\leq k)$}
+Soit $X$ une variable aléatoire de paramètres $n$ et $p$. Pour $k$ allant de 0 à $n$, pour calculer $P(X=k)$ ou $P(X\leq k)$, on utilise une calculatrice :
+\begin{itemize}
+\nouvitem Sur Texas instrument : aller dans le menu \fbox{2nd}\fbox{distrib}, choisir \fbox{binomFdp} et taper \fbox{n}\fbox{,}\fbox{p}\fbox{,}\fbox{k}\fbox{)} pour calculer $P(X=k)$ et choisir \fbox{binomFRép} et taper \fbox{n}\fbox{,}\fbox{p}\fbox{,}\fbox{k}\fbox{)} pour calculer $P(X\leq k)$.
+\nouvitem Sur Casio : aller dans le menu \fbox{STAT} puis \fbox{DIST} puis \fbox{BINM}. Sélectionner alors \fbox{Bpd} puis \fbox{Var} pour variable, puis entrer alors $k$  dans la ligne \og{}x\fg{}, $n$ dans la ligne \og{}numtrial\fg{} et $p$ dans la ligne \og{}p\fg{} puis aller sur \og{}execute\fg{} pour valider et calculer ainsi $P(X=k)$. Pour le calcul de  $P(X\leq k)$, on utilisera \fbox{Bcd} au lieu de \fbox{Bpd}.
+\end{itemize}
+\end{sanscadre}
+
+\begin{sanscadre}{Exemple}
+On considère une variable aléatoire $X$ suivant la loi binomiale de paramètres $n=4$ et $p=0,4$.\\
+Sur TI, la probabilité $P(X\leq 3)$ est donnée par \texttt{binomFrép(4,0.4,3)}.
+\end{sanscadre}
+
+\begin{sanscadre}{Remarques}
+\begin{itemize}
+\nouvitem On a $P(X<3)=P(X\leq 2)$\\
+\nouvitem pour calculer $P(X>k)$, on calcule $1-P(X\leq k)$.
+\end{itemize}
+\end{sanscadre}
+
+\cadre{
+\begin{encadrer}{Définition}
+Lorsqu'on simule un \og{}grand nombre de fois\fg{} un schéma de Bernoulli de paramètres $n$ et $p$, la moyenne du nombre de succès par schéma se rapproche d'un réel appelé \emphref{espérance mathématique} de la variable aléatoire $X$ que l'on note $E(X)$.
+\end{encadrer}
+}
+
+\cadre{
+\begin{encadrer}{Propriété}
+L'espérance mathématique de la loi binomiale de paramètres $n$ et $p$ est :
+$$E(X)=np$$
+\end{encadrer}
+}
+
+\begin{sanscadre}{Exemple}
+Pour le problème de la chaîne de production, en prélevant $n=100$ produits indépendamment, la loi binomiale a pour paramètres $n=100$ et $p=0,05$. On a alors $E(X)=np=100\times 0,05=5$ ce qui signifie que l'on peut prévoir 5 produits défectueux pour un prélèvement de 100 produits indépendants.
+\end{sanscadre}
+
+
+\end{document}
+
+

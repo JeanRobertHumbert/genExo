@@ -1,0 +1,94 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{lastpage}
+\usepackage{multicol}
+
+
+\setcounter{secnumdepth}{5}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{geometry}% pour définir le format des pages du livre
+\geometry{a4paper,left=20mm,right=20mm,top=20mm,bottom=20mm}
+
+\usepackage{titlesec}
+
+\titleformat % design des titres des sections
+{\section}
+[block]
+{\Large\upshape\bfseries}
+{\thesection~-}
+{\baselineskip}
+{}
+[{\color{blue}\hrule}\vspace{2pt}{\color{blue}\hrule}\vspace{0\baselineskip}]
+
+\titleformat % design des titres des sections
+{\subsection}
+[block]
+{\large\upshape\bfseries}
+{\thesubsection~-}
+{\baselineskip}
+{}
+[{\color{blue}\hrule}]
+
+\author{Jean-Robert Humbert}
+\title{\hrulefill\\ Titre}
+
+
+\usepackage{tikz,tkz-tab, tkz-base}
+\tikzset{every picture/.style={execute at begin picture={\shorthandoff{:;!?};}}}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [shape=rectangle,inner sep=0pt]
+
+\usepackage{tkz-euclide}
+
+% command perso
+\newcommand*{\vect}[1]{
+	\overrightarrow{#1}
+}
+\newcommand*{\Coord}[3]{% $\Coord{AB}{x_A}{y_A}$
+  \ensuremath{\overrightarrow{#1}\, 
+    \begin{pmatrix} 
+      #2\\ 
+      #3 
+    \end{pmatrix}}}
+
+\newcommand*{\coordV}[2]{% $\Coord{AB}{x_A}{y_A}$
+  \ensuremath{\, 
+    \begin{pmatrix} 
+      #1\\ 
+      #2 
+    \end{pmatrix}}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\footnotesize{Jean-Robert HUMBERT}}
+\cfoot{\thepage/\pageref{LastPage}}
+\rfoot{\footnotesize{LPO G. BRASSENS @ 2021-22}}
+
+\renewcommand{\headrule}{\hbox to\headwidth{\color{darkgray}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrule}{{\color{darkgray}\vskip-\footruleskip\vskip-\footrulewidth \hrule width\headwidth height\footrulewidth\vskip\footruleskip}}
+\renewcommand{\footrulewidth}{1pt}
+
+
+
+\begin{document}
+
+%\maketitle
+
+
+\clearpage
+	\section{Sujet}
+		Une usine produit des bonbons. Le responsable "production" a modélisé le cout de production de chacune des machines en fonction du poids de bonbons produit pour une machine. Si $x$ est le poids de bonbons produit alors $C(x)$ donne le coût de production au kilogramme en fonction de $x$ avec :
+		\begin{center}

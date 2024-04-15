@@ -1,0 +1,624 @@
+
+%!TEX encoding = UTF-8 Unicode
+% !TEX TS-program = lualatex
+\documentclass[12pt,%
+addpoints,%
+%answers%
+]{exam}
+\usepackage{systeme}
+\usepackage[french]{babel}
+\usepackage{tikz,tkz-tab, tkz-base}
+\usepackage{tkz-fct}
+\usepackage{tkz-euclide}
+
+\usetikzlibrary{shapes} % biblio. de formes de noeuds tikz
+\usetikzlibrary{arrows} % biblio. flèches tikz
+
+\usepackage[unboxed]{cwpuzzle}
+
+
+\tikzset{every picture/.style={execute at begin picture={\shorthandoff{:;!?};}}}
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [shape=rectangle,inner sep=0pt]
+\usepackage{pgfplots}
+\pgfplotsset{every tick label/.append style={font=\tiny}}
+\usepackage{mathtools}			
+\usepackage{multicol}
+\setlength{\columnsep}{2cm}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{blue}}
+
+%--------------------------------------------------------------------------------------
+\usepackage{enumerate}
+\usepackage{fourier}
+\usepackage{xspace}
+\usepackage{amsmath,amssymb,amstext,makeidx}
+\usepackage{fancybox}
+\usepackage{tabularx}
+\usepackage[normalem]{ulem}
+\usepackage{pifont}
+\usepackage[euler]{textgreek}
+\usepackage{textcomp,enumitem}
+\newcommand{\euro}{\eurologo{}}
+%\usepackage{pst-plot,pst-tree,pst-func,pstricks-add}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\usepackage[left=1.5cm, right=1.5cm, top=1.9cm, bottom=2.4cm]{geometry}
+\newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+\renewcommand{\theenumi}{\textbf{\arabic{enumi}}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.}}
+\renewcommand{\theenumii}{\textbf{\alph{enumii}}}
+\renewcommand{\labelenumii}{\textbf{\theenumii.}}
+\def\Oij{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath}\right)$}
+\def\Oijk{$\left(\text{O}~;~\vect{\imath},~\vect{\jmath},~\vect{k}\right)$}
+\def\Ouv{$\left(\text{O}~;~\vect{u},~\vect{v}\right)$}
+
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\usepackage{numprint}
+\renewcommand\arraystretch{1.1}
+\newcommand{\e}{\text{e}}
+%\frenchbsetup{StandardLists=true}
+\usepackage{babel}
+\usepackage{enumerate}
+%---Pour les arbres de probabilités----------------------------------------------------
+\usepackage{pstricks,pst-node,pst-tree}
+\usepackage{pst-plot,pst-tree,pst-func,pstricks-add}
+\usepackage{graphicx}
+\usepackage{fancybox}
+\usepackage{tabularx}
+%---Définition de la page et des marges------------------------------------------------
+\setlength{\paperheight}{297mm}
+\setlength{\paperwidth}{210mm}
+\setlength{\textheight}{26cm}
+\setlength{\textwidth}{16cm}
+\setlength{\leftmargin}{-3cm}%
+\setlength{\rightmargin}{1cm}%
+%---Définition de l'entête de page et du pied de page----------------------------------
+\pagestyle{headandfoot}
+%\firstpageheader{Nom : \\Prénom :}
+%  {}
+%  {classe : TSTMG \\ Date : \today}
+\firstpagefooter{LPO G. BRASSENS}{Page \thepage\ / \numpages}{Session 2022-23}
+\runningheadrule
+\runningfootrule
+%\lhead{Nom : \\ Prénom :}
+%\chead{Devoir Commun 17 Février 2022\small{Correction - genCode : 9184466207}}
+%\rhead{TSTMG}
+%\runningfooter{LPO G. BRASSENS}{Page \thepage\ / \numpages}{Session 2021-22}
+
+
+
+%---Définition de Question-------------------------------------------------------------
+\def\Question{	
+	\renewcommand*{\questionlabel}{\fbox{Exercice \thequestion : }}
+	\question
+}
+\def\Part{
+	\renewcommand*{\partlabel}{\fbox{\thepartno : }}
+	\part
+}
+
+%--------------------------------------------------------------------------------------
+
+%\usepackage{xparse,xpatch}
+% redefine \part command to be \mypart
+\appto\parts{\let\exampart\part\let\part\mypart}
+
+\def\multiplechoice{54}
+\def\freeresponse{46}
+\makeatletter
+\ExplSyntaxOn
+% this will become a sequence of the part numbers and scores
+% like: 1a&10&, 1b&8&, 1c&9&, 2a&6, 2b&8&, 3&12&, 4&14&, ...
+\seq_new:N \g_part_scores_seq
+\tl_new:N \g_grade_table_tl
+
+\int_new:N \g_total_score_int% this will be the exam score
+\int_new:N \g_number_of_scores_int
+\NewDocumentCommand\mypart{o}{
+  \IfNoValueTF{#1}{\exampart}{
+    % don't do anything special inside solutions
+    \if@insolution\exampart[#1]
+    \else\exampart[#1]
+      % store both the part number and score in \g_part_scores_seq
+      % together with their column separators for the tabular env
+      \tl_set:Nx \l_tmpa_tl { \arabic{question}\alph{partno} }
+      \tl_put_right:Nn \l_tmpa_tl {&}
+      \tl_put_right:No \l_tmpa_tl {#1}
+      \tl_put_right:Nn \l_tmpa_tl {&}
+      \seq_gput_right:No \g_part_scores_seq \l_tmpa_tl
+      % increment the running total and number of scores
+      \int_gadd:Nn \g_total_score_int {#1}
+      \int_gincr:N \g_number_of_scores_int
+    \fi
+  }
+}
+% print row #1 of the part scores in the grade table
+\cs_new:Nn \__add_row_to_grade_table:n {
+   \tl_gput_right:Nx \g_grade_table_tl {\seq_item:Nn \g_part_scores_seq {#1}}
+   \tl_gput_right:Nn \g_grade_table_tl { & }
+   \tl_gput_right:Nx \g_grade_table_tl {\seq_item:Nn \g_part_scores_seq {#1+\g_number_of_scores_int/2}}
+   \tl_gput_right:Nn \g_grade_table_tl {\\\hline}
+}
+\NewDocumentCommand\GradeTable{}{% the new grade table
+  % we need an exam number of scores so add two
+  % empty cells if we have an odd number
+  \int_if_odd:nT {\g_number_of_scores_int} {
+      \seq_gput_right:Nn \g_part_scores_seq {&}
+      \int_ginc:N \g_number_of_scores_int
+  }
+  \int_gset:Nn \g_number_of_scores_int {\g_number_of_scores_int}
+  \int_gadd:Nn \g_total_score_int { \multiplechoice }
+  \int_gadd:Nn \g_total_score_int { \freeresponse }
+  % create the grade table
+  \tl_gclear:N \g_grade_table_tl
+  \int_step_function:nnN {1} {\g_number_of_scores_int/2} \__add_row_to_grade_table:n
+  \begin{tabular}{|c|c|c|c|c|c|}\hline
+    Question & Points~Possibles & Points~Acquis & Question & Points~Possibles & Points~Acquis \\\hline
+    \tl_use:N \g_grade_table_tl
+    \multicolumn2{c|}{}&\multicolumn{2}{r|}{\textit{Total}}
+        & \int_use:N \g_total_score_int & \\\cline{3-6}
+  \end{tabular}
+}
+\ExplSyntaxOff
+\makeatother
+%-------------------------------------------------------------------------------------
+
+\hsword{Score:}
+\usepackage{lipsum}
+\usepackage{mdframed}
+\renewenvironment{solution}
+{\begingroup\par\parshape0%
+\begin{mdframed}[%skipabove=\baselineskip,
+%                 innertopmargin=\baselineskip,
+%                 innerbottommargin=\baselineskip,
+                 userdefinedwidth=\textwidth,
+                 backgroundcolor=blue!5]
+\textbf{Solution:}\enspace\ignorespaces}
+{\end{mdframed}\par\endgroup}
+
+\usepackage{mathtools}
+
+\newcommand*{\Coord}[3]{% 
+  \ensuremath{\overrightarrow{#1}\, 
+    \begin{pmatrix} 
+      #2\\ 
+      #3 
+    \end{pmatrix}}}
+
+\newcommand*{\Point}[3]{%
+	\ensuremath{#1\, 
+    	\begin{pmatrix} 
+    		#2\\ 
+    	#3 
+    	\end{pmatrix}
+	}
+}
+\checkboxchar{$\Box$}
+
+
+\def\RectoPage{
+	\begin{tikzpicture}
+		\foreach \x in {0, 0.5, ..., 17} {
+			\draw[black!20] (\x, 0) -- (\x, 26);
+			}
+		\foreach \y in {0, 0.5, ..., 26} {
+			\draw[black!20] (0, \y) -- (17, \y);
+			}
+		\foreach \x in {0, 1, ..., 17} {
+			\draw[black!80] (\x, 0) -- (\x, 26);
+			}
+		\foreach \y in {0, 1, ...,26} {
+			\draw[black!80] (0, \y) -- (17, \y);
+			}
+	\end{tikzpicture}
+}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+
+\usepackage{listings} % \begin{lstlisting} \end{lstlisting} affiche du code comme le fait le langage choisi. \lstset{language=Pascal} \lstset{language=Python} pour choisir le langage dans le document avant chaque programme ou avant le \begin{document} pour l'appliquer Ã  tout le document. 
+%\lstset{} permet d'indiquer toutes les options. Pas de caractÃ¨re accentuÃ© (option lourdingue Ã  rajouter) qui vont s'ppliquer pour toute la suite du document: \lstset{language=Python}
+%Il espossible d'inclure un code python d'un fichier extÃ©rieur \lstinputlisting{source_filename.py}.
+%Il est possible de dÃ©finir une prÃ©sentation personnalisÃ© par un ensemble de configuration enregistrÃ© dans un fichier de style
+\lstdefinestyle{pythonstyle}{
+	language=Python,
+	backgroundcolor=\color{gray!30},   
+	commentstyle=\color{Plum},
+	keywordstyle=\color{blue},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{ForestGreen},
+	basicstyle=\ttfamily\color{black},
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=none,                   
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=1
+}
+\lstset{style=pythonstyle}
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\lstdefinestyle{bashstyle}{
+	language=bash,
+	backgroundcolor=\color{black},   
+	commentstyle=\color{white},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{white},
+	basicstyle=\ttfamily\footnotesize\color{white},
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=1
+}
+%\lstset{style=bashstyle}
+
+\usepackage[french]{algorithm2e}%pseudocode
+
+\usepackage{scratch3}
+\usepackage{chemfig}
+
+\renewcommand{\thepartno}{\arabic{partno}}
+\renewcommand{\thesubpart}{\thepartno.\alph{subpart}}
+\renewcommand{\thesubsubpart}{\thesubpart.\arabic{subsubpart}}
+
+
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+\newcommand{\dsp}{\displaystyle}
+\renewcommand\arraystretch{3}
+\setlength{\arrayrulewidth}{1pt}
+
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 							% horizontal line and its thickness
+\center 
+ 
+% University
+\textsc{\LARGE LPO G.BRASSENS}\\[1cm]
+
+% Document info
+\textsc{\Large Titre\\ \small{ genCode : blablabla}}\\[5cm]
+\textsc{\large toto et titi}\\[1cm] 										% Course Code
+\HRule \\[0.8cm]
+{ \huge \bfseries Mathématiques}\\[0.7cm]								% Assignment
+\HRule \\[5cm]
+\large
+\emph{Consignes:}\\%[1.5cm]													% Author info
+\fbox{%
+\begin{minipage}{\textwidth}
+   \begin{itemize}[label=$*$]
+        \item L'examen est noté sur un total de 50 points (45 + 5 bonus).
+        \item L'épreuve dure 1h.
+    \end{itemize}
+\end{minipage}
+}
+
+\vfill 
+\end{titlepage}
+
+\clearpage
+
+	\begin{questions}
+		\Question On considère $\displaystyle\varphi=\dfrac{1+\sqrt{5}}{2}$ (le nombre d'or).
+		\begin{parts}
+			\Part Montrez que $\varphi$ est solution de l'équation suivante :
+				\begin{center}
+					$x^2-x-1=0$
+				\end{center}
+			\Part Montrez que $\dfrac{-1}{\varphi}=1-\varphi$.
+			\Part Montrez que $\displaystyle x^2-x-1=(x-\varphi)\left(x+\dfrac{1}{\varphi}\right)$
+		\end{parts}
+	
+	
+\clearpage	
+    \Question[8] On considère la suite géométrique $(h_n)$ (avec $n\in \mathbb{N}$) de terme de rang 3 ayant pour valeur 7 et de raison $\dfrac{5}{2}$.\\
+    Compléter le diagramme en répondant aux questions suivantes :\\
+        \begin{center}
+            \begin{tikzpicture}
+            \node[draw, ellipse, minimum width=2cm, minimum height=1cm] (ovale1) at (0,0) {......};
+            \node[below=1mm of ovale1] {$h_{3}$}; % Texte plus proche de l'ovale
+
+            \node[draw, ellipse, minimum width=2cm, minimum height=1cm] (ovale2) at (3,0) {......};
+            \node[below=1mm of ovale2] {$h_{4}$}; % Texte plus proche de l'ovale
+
+            \node[draw, ellipse, minimum width=2cm, minimum height=1cm] (ovale3) at (6,0) {......};
+            \node[below=1mm of ovale3] {$h_{5}$}; % Texte plus proche de l'ovale
+
+            \node[draw, ellipse, minimum width=2cm, minimum height=1cm] (ovale4) at (9,0) {......};
+            \node[below=1mm of ovale4] {$h_{6}$}; % Texte plus proche de l'ovale
+
+            \draw[->, bend left] (ovale1) to node[above] {$\times .....$} (ovale2);
+            \draw[->, bend left] (ovale2) to node[above] {$\times .....$} (ovale3);
+            \draw[->, bend left] (ovale3) to node[above] {$\times .....$} (ovale4);
+            \end{tikzpicture}
+        \end{center}
+        \begin{parts}
+                \Part Compléter les pointillés ci-dessous pour obtenir les quatre premiers termes de la suite :
+                \begin{subparts}
+                    \subpart $h_{3}=\color{red}{7}$
+                    \subpart $h_{4}=\color{red}{h_{3}}\times \color{red}{\dfrac{5}{2}}=\color{red}{7}\times \color{red}{\dfrac{5}{2}}=\color{red}{-30}$
+                    \subpart $h_{5}=......\times ......=......$
+                    \subpart $h_{6}=......\times ......=......$
+                    \subpart $a_{4}=\color{red}{15}$
+                    \subpart $a_{5}=\color{red}{a_{4}}\times \color{red}{-2}=\color{red}{15}\times \color{red}{-2}=\color{red}{-30}$
+                    \subpart $a_{6}=......\times ......=......$
+                    \subpart $a_{7}=......\times ......=......$
+                \end{subparts}
+        \end{parts}
+        \fillwithlines{10mm}
+
+    \clearpage
+    \renewcommand\arraystretch{1}
+            \Question[20] Résoudre les équations suivantes dans $\mathbb{R}$ par la méthode du discriminant :
+                \begin{enumerate}
+                    \item $- 5 x^{2} + 4 x + 4=0$
+                        \fillwithlines{60mm}
+                    \item $- 5 x^{2} + 4 x + 4=0$\\
+
+        Le polynôme est de la forme $- 5 x^{2} + 4 x + 4$ avec $a=-5$, $b=4$ et $c=4$.\\
+                        On calcul le discriminant $\Delta$:
+                        \begin{equation*}
+                                                        \begin{array}{l@{}>{\displaystyle}l}
+                                                        \Delta  &{}= b^2-4ac \\
+                                                                        &{}= (4)^2-4\times(-5)\times(4)\\
+                                                                        &{}= 96
+                                                        \end{array}
+                                                \end{equation*}
+                                                On a donc $\Delta>0$ donc l'équation $- 5 x^{2} + 4 x + 4=0$ admet 2 solutions :
+                                                \begin{equation*}
+                                                  \begin{split}
+                                                    x_1 &= \dfrac{-b-\sqrt{\Delta}}{2a}\\
+                                                    x_1 &= \dfrac{-(4)-\sqrt{96}}{2\times -5}\\
+                                                    x_1 &= \dfrac{2}{5} + \dfrac{2 \sqrt{6}}{5}
+                                                  \end{split}
+                                                        \quad\quad et \quad\quad
+                                                  \begin{split}
+                                                    x_2 &= \dfrac{-b+\sqrt{\Delta}}{2a}\\
+                                                    x_2 &= \dfrac{-(4)+\sqrt{96}}{2\times -5}\\
+                                                    x_2 &= \dfrac{2}{5} - \dfrac{2 \sqrt{6}}{5}
+                                                  \end{split}
+                                                \end{equation*}
+                                                L'équation $- 5 x^{2} + 4 x + 4=0$ admet donc $x_1 = \dfrac{2}{5} + \dfrac{2 \sqrt{6}}{5}$ et $x_2 = \dfrac{2}{5} - \dfrac{2 \sqrt{6}}{5}$ comme solutions.
+                \end{enumerate}
+
+    \clearpage
+    \renewcommand\arraystretch{1}
+            \Question[20] Résoudre les équations suivantes dans $\mathbb{R}$ par la méthode du discriminant :
+                \begin{enumerate}
+                    \item $- \dfrac{x^{2}}{2} + 2 x + 2=0$\\
+
+        Le polynôme est de la forme $- \dfrac{x^{2}}{2} + 2 x + 2$ avec $a=- \dfrac{1}{2}$, $b=2$ et $c=-2$.\\
+                        On calcul le discriminant $\Delta$:
+                        \begin{equation*}
+                            \begin{array}{l@{}>{\displaystyle}l}
+                            \Delta      &{}= b^2-4ac \\
+                                    &{}= \left(2\right)^2-4\times\left(- \dfrac{1}{2}\right)\times\left(-2\right)\\
+                                    &{}= 0
+                            \end{array}
+                        \end{equation*}
+                        On a donc $\Delta=0$ donc l'équation $- \dfrac{x^{2}}{2} + 2 x + 2=0$ admet 1 solution :
+                        \begin{equation*}
+                            \begin{array}{l@{}>{\displaystyle}l}
+                                x_0 &= \dfrac{-b}{2a}\\
+                                x_0 &= \dfrac{-\left(2\right)}{2\times - \dfrac{1}{2}}\\
+                                x_0 &= 2
+                            \end{array}
+                        \end{equation*}
+                        L'équation $- \dfrac{x^{2}}{2} + 2 x + 2=0$ admet donc $x_0 = 2$ comme solutions.
+                \end{enumerate}
+ 
+%		\Question Une entreprise a commencé son activité en 2020 avec un chiffre d'affaires de 200 000 euros. Chaque année, son chiffre d'affaires augmente de 5\%.
+%			\begin{parts}
+%				\Part Exprimez le chiffre d'affaires de l'entreprise en fonction de l'année n à l'aide d'une suite. L'année 2020 correspond à n=0.\\
+%					\color{red}{Le chiffre d'affaires peut être modélisé par une suite géométrique où chaque terme est égal à 105\% du précédent. La formule générale de cette suite est 
+%					\begin{center}
+%						$C_n=200 000 \times 1.05^n$\\
+%						avec n le nombre d'années après 2020.
+%					\end{center}
+%					}\color{black}
+%				
+%				\Part Calculez le chiffre d'affaires de l'entreprise pour les années 2021, 2022 et 2023.
+%					\color{red}{
+%					\begin{itemize}
+%					 \item Pour 2021 $(n=1)$ , $C_1=200 000\times 1.05^1 = 210000$
+%					 \item Pour 2022 $(n=2)$ , $C_2=200 000\times 1.05^2 \approx 220500$
+%					 \item Pour 2023 $(n=3)$ , $C_3=200 000\times 1.05^3 \approx 231525$
+%					\end{itemize}
+%					}\color{black}
+%				\Part Calculez le taux d'évolution global du chiffre d'affaires entre 2020 et 2023.\\
+%					\color{red}{
+%					Le taux d'évolution global de 2020 à 2023 est donné par $\dfrac{C_3-C_0}{C_0}$. Donc : 
+%					\begin{center}
+%						$\dfrac{231525-200000}{200000}\approx 0.1576$ ou $15,76\%$
+%					\end{center}
+%					}\color{black}
+%				\Part Comparez ce taux d'évolution avec la somme des taux d'évolution annuels. Expliquez pourquoi ces deux taux sont différents.\\
+%%				\color{red}{
+%%				}\color{black}
+%				\Part Supposons maintenant que l'augmentation annuelle du chiffre d'affaires devient linéaire, avec une augmentation de 10 000 euros chaque année à partir de 2024. Modélisez cette situation à l'aide d'une fonction affine.\\
+%%				La somme des taux annuels est simplement $3 \times 5\%=15\%$. Cette valeur est différente du taux global car le taux d'évolution global considère l'effet cumulatif des augmentations annuelles (c'est le principe des intérêts composés).
+%				\color{red}{
+%				La nouvelle situation peut être modélisée par une fonction affine :\\
+%				\begin{center}
+%					$C(n)=C_3+10000\times (n-3)$, où n est le nombre d'années après 2020.
+%				\end{center}
+%				}\color{black}
+%				\Part Calculez le chiffre d'affaires prévu pour l'année 2025 avec cette nouvelle modèle.
+%				\color{red}{
+%				\begin{itemize}
+%					\item Pour 2025 $(n=5)$: $C(5)=231525+10000\times (5-3)=251525$ euros.
+%				\end{itemize}
+%				}\color{black}
+%				\Part Comparez les chiffres d'affaires prévus pour 2025 en utilisant les deux modèles (suite géométrique et fonction affine). Lequel est plus avantageux pour l'entreprise ?\\
+%				\color{red}{
+%				Avec le modèle géométrique, le chiffre d'affaires en 2025 serait :
+%				\begin{center}
+%					$C_5=200000\times 1.05^5\approx 255526$ euros.
+%				\end{center}
+%				Avec la fonction affine, le chiffre d'affaires en 2025 est de 251525 euros.\\
+%				}\color{black}
+%				\Part Discutez de la pertinence de chaque modèle dans le contexte d'une prévision à long terme.\\
+%				\color{red}{
+%				Le modèle géométrique prévoit un chiffre d'affaires légèrement plus élevé en 2025. Cependant, le modèle linéaire pourrait être plus réaliste sur le long terme, car une croissance exponentielle indéfinie est souvent peu probable dans un contexte d'affaires réel.
+%				}\color{black}
+%			\end{parts}	
+	
+%		\Question Pour les séries numériques suivantes, donnez le terme suivant, la raison de la suite et le type de suite.\\
+%			\begin{parts}
+%				\begin{multicols}{2}
+%					\Part[3] $1, 3, 6, 9, 12, ....$\\
+%						\begin{oneparcheckboxes}
+%							\choice Arithmétique
+%							\choice Géométrique
+%						\end{oneparcheckboxes}\\
+%						Raison : ....................
+%					\Part[3] $1, \dfrac{1}{2}, \dfrac{1}{4}, \dfrac{1}{8}, \dfrac{1}{16}, ....$\\
+%						\begin{oneparcheckboxes}
+%							\choice Arithmétique
+%							\choice Géométrique
+%						\end{oneparcheckboxes}\\
+%						Raison : ....................
+%					\Part[3] $1, 3, 6, 9, 12, ....$\\
+%						\begin{oneparcheckboxes}
+%							\choice Arithmétique
+%							\choice Géométrique
+%						\end{oneparcheckboxes}\\
+%						Raison : ....................
+%					\Part[3] $1, \dfrac{1}{2}, \dfrac{1}{4}, \dfrac{1}{8}, \dfrac{1}{16}, ....$\\
+%						\begin{oneparcheckboxes}
+%							\choice Arithmétique
+%							\choice Géométrique
+%						\end{oneparcheckboxes}\\
+%						Raison : ....................
+%				\end{multicols}
+%			\end{parts}
+%\Question Une personne décide de suivre un régime amaigrissant qui doit lui permettre de perdre 6\% de son poids par mois. Son poids initial est de 129 kg.\\
+%        On pose $v_0=129 kg$ et on note $v_n$ son poids après $n$ mois.
+%            \begin{parts}
+%                \Part[1] Quelle est la nature de la suite (cocher la bonne réponse) ?\\
+%                    \begin{oneparcheckboxes}
+%                        \choice Arithmétique
+%                        \choice Géométrique
+%                        \choice Quelconque
+%                    \end{oneparcheckboxes}
+%                \Part[3] Donnez l'expression de $v_n$ en fonction de $v_{n-1}$ :
+%                \fillwithlines{20mm}
+%                \Part[2] Donnez le poids de cette personne après 6 mois (arrondir le résultat au centième) ?
+%                \fillwithlines{20mm}
+%        \end{parts}
+%
+%\Question Une personne décide de suivre un régime amaigrissant qui doit lui permettre de perdre 6\% de son poids par mois. Son poids initial est de 129 kg.\\
+%    On pose $v_0=129 kg$ et on note $v_n$ son poids après $n$ mois.
+%        \begin{parts}
+%            \Part[1] Quelle est la nature de la suite (cocher la bonne réponse) ?\\
+%                \color{red}{La suite est géométrique car on multiplie à chaque fois par $(1-\dfrac{6}{100})$ le poids du mois précédent}\color{black}
+%            \Part[3] Donnez l'expression de $v_n$ en fonction de $v_{n-1}$ :
+%            \begin{center}
+%                    $\color{red}{v_n=v_{n-1}\times (1-\dfrac{6}{100})}$
+%                \end{center}
+%
+%            \Part[2] Donnez le poids de cette personne après 6 mois (arrondir le résultat au centième) ?
+%            \begin{center}
+%        \color{red}{$v_6=88.99$}\color{black}
+%    \end{center}
+%    \end{parts}
+    
+%        \Question[8] Fonctions affines\\
+%        Donnez l'expression algébrique des fonctions affines associées aux droites suivantes :
+%        \begin{center}
+%                        \begin{tikzpicture}[scale=1.5,cap=round]
+%                % Local definitions
+%                \def\costhirty{0.8660256}
+%
+%                % Colors
+%                \colorlet{anglecolor}{green!50!black}
+%                \colorlet{sincolor}{red}
+%                \colorlet{tancolor}{orange!80!black}
+%                \colorlet{coscolor}{blue}
+%
+%                % Styles
+%                \tikzstyle{axes}=[]
+%                \tikzstyle{important line}=[very thick]
+%                \tikzstyle{information text}=[rounded corners,fill=red!10,inner sep=1ex]
+%
+%                % Grille
+%                \draw[style=help lines,step=0.5cm] (-4.4,-4.4) grid (4.4,4.4);
+%
+%                                % The graphic
+%                \begin{scope}[style=axes]
+%                    \draw[->] (-4.5,0) -- (4.5,0) node[right] {$x$};
+%                    \draw[->] (0,-4.5) -- (0,4.5) node[above] {$y$};
+%                    \draw[->, very thick] (0,0) -- (1,0) node[below, midway] {$\vect{i}$};
+%                    \draw[->, very thick] (0,0) -- (0,1) node[left, midway] {$\vect{j}$};
+%                    \node[below left] at (-0.15,-0.15) {0};
+%                    \foreach \x/\xtext in {-4, -3, -2, -1, 0, 1, 2, 3, 4}
+%                    \draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {\tiny{$\xtext$}};
+%                    %
+%                    \foreach \y/\ytext in {-4, -3, -2, -1, 0, 1, 2, 3, 4}
+%                        \draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {\tiny{$\ytext$}};
+%                \end{scope}
+%\draw[domain=-4.5:4.5, smooth, variable=\x, blue] plot ({\x}, {1/2*\x+-1/2}) node[below] {$\mathcal{C}_{e}$};
+%        \draw[domain=-4.5:4.5, smooth, variable=\x, blue] plot ({\x}, {1/2*\x+-2}) node[below] {$\mathcal{C}_{r}$};
+%        \draw[domain=-4.5:4.5, smooth, variable=\x, blue] plot ({\x}, {1/2*\x+2}) node[below] {$\mathcal{C}_{t}$};
+%        \draw[domain=-1.67:4.33, smooth, variable=\x, blue] plot ({\x}, {3/2*\x+-2}) node[below] {$\mathcal{C}_{v}$};
+%
+%            \end{tikzpicture}
+%        \end{center}
+%        \begin{multicols}{2}
+%                        \begin{parts}
+%\Part \color{red}{$e(x)=\dfrac{1}{2}x - \dfrac{1}{2}$}\color{black}
+%        \Part \color{red}{$r(x)=\dfrac{1}{2}x-2$}\color{black}
+%        \Part \color{red}{$t(x)=\dfrac{1}{2}x + 2$}\color{black}
+%        \Part \color{red}{$v(x)=\dfrac{3}{2}x-2$}\color{black}
+%
+%                        \end{parts}
+%        \end{multicols}
+	        
+	\end{questions}
+
+
+
+\end{document}
+    

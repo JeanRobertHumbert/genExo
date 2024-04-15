@@ -1,0 +1,87 @@
+
+		\end{center}
+		
+%		\begin{center}
+%			$A\coordV{2}{1}$, $B\coordV{5}{4}$ et $C\coordV{7}{2}$ 
+%		\end{center}
+		\begin{enumerate}
+			\item Question 1 : Déterminer $C'(x)$, la fonction dérivée de $C(x)$\\
+%			Correction : \\
+%			La fonction $C(x)$ est de la forme $u+v$ on a donc :\\
+%			\begin{center}
+%				$C(x)=u+v+w+z$\\
+%				avec $u=\dfrac{7}{100}x^3$, $v=-\dfrac{77}{100}x^2$, $w=\dfrac{49}{20}x$ et $z=\dfrac{3}{20}$
+%			\end{center}
+%			$u$, $v$, $w$ et $z$ sont de la forme $kx^n$ or $(kx^n)'=knx^{n-1}$ on a donc :
+%			\begin{center}
+%				$C'(x)=u'+v'+w'+z'$\\
+%				avec $u'=\dfrac{21}{100}x^2$, $v'=-\dfrac{77}{50}x$, $w'=\dfrac{49}{20}$ et $z'=0$
+%			\end{center}
+%			d'où :
+%			\begin{center}
+%				$C'(x)=\dfrac{21}{100}x^2-\dfrac{77}{50}x+\dfrac{49}{20}+0$\\
+%			\end{center}
+%			et donc :
+%			\begin{center}
+%				$C'(x)=\dfrac{21}{100}x^2-\dfrac{77}{50}x+\dfrac{49}{20}$\\
+%			\end{center}
+			\item Question 2 : Résoudre $C'(x)=0$\\
+%			Correction :\\
+%			$C'(x)$ est un polynôme du second degré, on utilise donc la méthode du discriminant.\\
+%			On écrit donc $C'(x)$ avec :
+%			\begin{center}
+%				$C'(x)=ax^2+bx+c$\\
+%				$a=\dfrac{21}{100}$, $b=-\dfrac{77}{50}$ et $c=\dfrac{49}{20}$
+%			\end{center}
+%			On calcul $\Delta=b^2-4ac$ d'où :
+%			\begin{align*}
+%				\Delta	&=b^2-4ac\\
+%						&=\left(-\dfrac{77}{50}\right)^2-4\left(\dfrac{21}{100}\right)\left(\dfrac{49}{20}\right)\\
+%						&=\dfrac{5929}{2500}-\dfrac{1029}{500}\\
+%						&=\dfrac{5929}{2500}-\dfrac{5145}{2500}\\
+%						&=\dfrac{784}{2500}=\left(\dfrac{14}{25}\right)^2
+%			\end{align*}
+%\clearpage
+%			Donc $\Delta>0$, il y a donc 2 solutions à l'équation $C'(x)=0$
+%			\begin{multicols}{2}
+%			\begin{align*}
+%				x_1&=\dfrac{-b-\sqrt{\Delta}}{2a}\\
+%				x_1&=\dfrac{-\left(-\dfrac{77}{50}\right)-\dfrac{14}{25}}{\dfrac{21}{50}}\\
+%				x_1&=\dfrac{\dfrac{77}{50}-\dfrac{28}{50}}{\dfrac{21}{50}}\\
+%				x_1&=\dfrac{49}{50}\times\dfrac{50}{21}\\
+%				x_1&=\dfrac{49}{21}=\dfrac{7}{3}
+%			\end{align*}
+%			
+%			\begin{align*}
+%				x_2&=\dfrac{-b+\sqrt{\Delta}}{2a}\\
+%				x_2&=\dfrac{-\left(-\dfrac{77}{50}\right)+\dfrac{14}{25}}{\dfrac{21}{50}}\\
+%				x_2&=\dfrac{\dfrac{77}{50}+\dfrac{28}{50}}{\dfrac{21}{50}}\\
+%				x_2&=\dfrac{105}{50}\times\dfrac{50}{21}\\
+%				x_2&=\dfrac{105}{21}=\fbox{5}
+%			\end{align*}
+%			\end{multicols}
+%			Les 2 solutions sont donc $x_1=\dfrac{7}{3}$ et $x_2=5$
+			\item Question 3 : En déduire le signe de $C'$ et les variations de $C$\\
+			Correction :\\
+%			Le polynôme est du signe de $-a$ entre ses racines d'où le tableau de signe et de variation suivant :
+%			\begin{center}
+%				\begin{tikzpicture}
+%					\tkzTabInit{$x$/1,$C'(x)$/1,$C$/3}{$-\infty$,$\dfrac{7}{3}$,$5$,$\infty$}
+%					\tkzTabLine{,+,z,-,z,+}
+%					\tkzTabVar{-/$-\infty$,+/$C\left(\dfrac{7}{3}\right)$,-/$C(5)$,+/$+\infty$}
+%				\end{tikzpicture}
+%			\end{center}
+			
+			\item Question 4 : Conclure sur la quantité optimale de production et en donner donc le coût minimal au kilogramme\\
+%			Correction :\\
+%			La quantité optimale à produire est $5$ kilogrammes pour :
+%			\begin{align*}
+%				C(5)&=\dfrac{7}{100}\times 5^3-\dfrac{77}{100}\times 5^2+\dfrac{49}{20}\times 5+\dfrac{3}{20}\\
+%					&=\dfrac{35}{4}-\dfrac{77}{4}+\dfrac{49}{4}+\dfrac{3}{20}\\
+%					&=\dfrac{7}{4}+\dfrac{3}{20}\\
+%					&=\dfrac{35}{20}+\dfrac{3}{20}\\
+%					&=\dfrac{38}{20}=\dfrac{19}{10}=\fbox{1,9}
+%			\end{align*}
+		\end{enumerate}
+
+\end{document}

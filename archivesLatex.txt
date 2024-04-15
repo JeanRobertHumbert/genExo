@@ -1,0 +1,1470 @@
+%%------------------------------------------------------------------------------------------
+%		\Question On s'intéresse à la population féminine du Portugal. Nous savons qu'en 2010 il y avait 5 171 286 hommes et 5 504 286 femmes.\\
+%		On sélectionne au hasard 3 personnes de ce pays, avec remise et de manière indépendante. A chaque tirage, on regarde si la personne est un homme ou une femme.
+%
+%On peut modéliser cette expérience aléatoire par $n$ épreuves indépendantes de Bernoulli de paramètre $p$, avec $S$ le succès, c'est-à-dire que la personne tirée soit une femme, et $E$ l'échec, c'est-à-dire que la personne tirée ne soit pas une femme.
+%			\begin{parts}
+%				\Part Calculer le paramètre $p$ de la loi Binomiale (la probabilité $p(S)$ de succès de l'événement $S$ « la personne tirée est une femme »)
+%				\fillwithlines{25mm}
+%			
+%			\end{parts}
+%%-------------------------------------------------------------------------------------------------
+%
+%		\Question (BONUS) - Un voilier de 37 mètres de long monté de 3 mâts est manœuvré par 18 matelots. La surface des voiles représente 632 $m^2$. La structure du navire comprend 3 ponts dont la cale.\\
+%		3 Sous-Officiers s'occupent du fonctionnement du navire. L'un d'entre-eux est assigné à la navigation.
+%		\begin{parts}
+%			\Part Quel est l'âge du Capitaine ? (toutes réponses sera évaluées)
+%			\fillwithlines{25mm}
+%		\end{parts}
+%\clearpage
+%
+%		\Question (BONUS) - 
+%		\begin{parts}
+%			\Part Quel est l'âge du Capitaine ? (toutes réponses sera évaluées)
+%			\fillwithlines{25mm}
+%		\end{parts}
+%
+%
+%	
+%%-------------------------------------------------------------------------------------------------
+%%\clearpage
+%		\Question Chenille\\
+%			Une chenille processionnaire descend le long d'un grillage. À chaque épissure, elle prend la maille de droite une fois sur trois, celle de gauche deux fois sur trois. Elle descend ainsi quatre niveaux.
+%			\begin{parts}
+%				\Part Quelle est la probabilité que la chenille ait pris trois fois la maille de droite sur les quatre niveaux ?
+%				\Part Quelle est la probabilité que la chenille ait pris trois fois la maille de gauche sur les quatre niveaux ?
+%			 \end{parts}
+%%-------------------------------------------------------------------------------------------------
+%%\clearpage
+%		\Question Probabilité
+%			\begin{parts}
+%				\Part On lance trois fois un dé à jouer non pipé :
+%					\begin{enumerate}
+%						\item Quelle est la probabilité d'obtenir trois 5 ?
+%						\item Quelle est la probabilité d'obtenir une somme de 15 ?
+%						\item Quelle est la probabilité d'obtenir le premier 5 au troisième lancer ?
+%					\end{enumerate}
+%				\Part On lance trois fois trois dés à jouer non pipés ; quelle est la probabilité d'obtenir trois fois une somme de 15 ?
+%			\end{parts}
+%%-------------------------------------------------------------------------------------------------
+%%\clearpage
+%		\Question Une entreprise dispose d'un parc de 60 ordinateurs neufs ; la probabilité que l'un d'entre eux tombe en panne sur une période d'une année est de 0,1 (période de garantie) ; la panne de l'un des ordinateurs n'affecte pas les autres machines du parc.\\ Quelle est la probabilité que moins de 4 appareils tombent en panne durant l'année ? 
+%%-------------------------------------------------------------------------------------------------
+%\clearpage
+%		\Question Loi binomiale\\
+%			\begin{parts}
+%				\Part
+%					Pour la recherche d'un emploi, une personne envoie sa candidature à 25 entreprises.
+%					La probabilité qu'une entreprise lui réponde est de 0,2 et on suppose que ces réponses sont indépendantes.
+%					Quelle est la probabilité, arrondie au centième, que la personne reçoive au moins 4 réponses ?
+%					\begin{solution}
+%						On effectue 25 tirages aléatoires, identiques et indépendants.\\
+%						A chaque tirage il n'y a que deux issues :
+%						\begin{itemize}
+%							\item $E$ : "l'entreprise lui répond"
+%							\item $\overline{E}$ : "l'entreprise ne lui répond pas"
+%						\end{itemize}
+%						On est donc dans le contexte d'une Loi binomiale de paramètres :
+%						\begin{itemize}
+%							\item $n = 25$
+%							\item $k = 4$
+%							\item $p = 0,2$
+%						\end{itemize}
+%						d'où :
+%						\begin{align*}
+%							P(X=k)	&= \binom{n}{k}\times p^k\times (1-p)^{n-k}\\
+%							P(X=4)	&= \binom{25}{4} \times 0,2^4\times (1-0,2)^{25-4}\\
+%									&= 12650 \times 0,0016 \times 0,009223372\\
+%									&= 0,186681505\\
+%									&= 0,19
+%						\end{align*}
+%					\end{solution}
+%				\Part Quelle est la probabilité, arrondie au centième, que la personne reçoive au plus 4 réponses
+%					\begin{solution}
+%						\begin{align*}
+%							P(X\leqslant 4)	&= P(X=0)+P(X=1)+P(X=2)+P(X=3)+P(X=4)\\
+%											&= 0,0038 + 0,0236 + 0,0708 + 0,1358 + 0,1867\\
+%											&= 0,4207\\
+%											&= 0,42
+%						\end{align*}
+%					\end{solution}
+%			\end{parts}
+%%-------------------------------------------------------------------------------------------
+%%|       Exercices de 2nd                                                                  |
+%%-------------------------------------------------------------------------------------------
+%\clearpage
+%
+%
+%	\Question
+%		Dans un lycée, 900 élèves vont à la cantine et 200 sont externe.\\
+%		On note avec la lettre $C$, l'évènement "L'élève mange à la cantine"
+%		\begin{parts}
+%			\Part[2] Comment note-t-on l'évènement contraire de $C$ et comment cela se lit-il ?
+%				\fillwithlines{15mm}
+%				\begin{solution}
+%					Il y a $900-200$ soit $700$ élèves qui réalise l'évènement $C$ sur 900 élèves. La probabilité de choisir au hasard un élève qui mange à la cantine est donc :
+%					\begin{center}
+%						$p(C)=\dfrac{900-200}{900}=\dfrac{700}{900}=\dfrac{7}{9}\approx 0,7777$ soit $77,77\%$
+%					\end{center}
+%				\end{solution}
+%			\Part[2] Si l'on choisit au hasard un élève, quelle est la probabilité qu'il soit externe ?
+%				\fillwithlines{15mm}
+%				\begin{solution}
+%					Il y a 200 élèves qui réalise l'évènement $C$ sur 900 élèves. La probabilité de choisir au hasard un élève qui mange à la cantine est donc :
+%					\begin{center}
+%						$p(C)=\dfrac{200}{900}=\dfrac{2}{9}\approx 0,2222$ soit $22,22\%$
+%					\end{center}
+%					On peut aussi considérer l'évènement que réalise un élève externe est le contraire de l'évènement $C$ or $p(C)+p(\overline{C})=1$. On a donc :
+%					\begin{center}
+%						$p(\overline{C})=1-p(C)$ donc $p(\overline{C})=1-0,7777\approx 0,2222$ soit $22,22\%$
+%					\end{center}
+%				\end{solution}
+%			\Part[2] Sachant que 100 élèves qui mangent à la cantine ont une allergie alimentaire, si on choisit au hasard un élève qui mange à la cantine, quelle est la probabilté qu'il est une allergie alimentaire ? On notera avec la lettre $A$ l'évènement "élève ayant une allergie alimentaire".
+%				\fillwithlines{20mm}
+%				\begin{solution}
+%					Il y a $100$ élèves qui réalise l'évènement $A$ sur $700$ élèves qui mange à la cantine. La probabilité de choisir au hasard un élève qui a une allergie est donc :
+%					\begin{center}
+%						$p(C)=\dfrac{100}{700}=\dfrac{1}{7}\approx 0,1486$ soit $14,86\%$
+%					\end{center}
+%				\end{solution}
+%			\Part[4] Complétez l'arbre de probabilité suivant :
+%				%:-+-+-+- Engendré par : http://math.et.info.free.fr/TikZ/Arbre/
+%				\begin{center}
+%				% Racine à Gauche, développement vers la droite
+%					\begin{tikzpicture}[xscale=1,yscale=1]
+%						% Styles (MODIFIABLES)
+%						\tikzstyle{fleche}=[->,>=latex,thick]
+%						\tikzstyle{noeud}=[fill=yellow,circle,draw]
+%						\tikzstyle{feuille}=[fill=yellow,circle,draw]
+%						\tikzstyle{etiquette}=[midway,fill=white,draw]
+%						% Dimensions (MODIFIABLES)
+%						\def\DistanceInterNiveaux{3}
+%						\def\DistanceInterFeuilles{2}
+%						% Dimensions calculées (NON MODIFIABLES)
+%						\def\NiveauA{(0)*\DistanceInterNiveaux}
+%						\def\NiveauB{(1.5)*\DistanceInterNiveaux}
+%						\def\NiveauC{(2.5)*\DistanceInterNiveaux}
+%						\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+%						% Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+%						\node[noeud] (R) at ({\NiveauA},{(1)*\InterFeuilles}) {$ $};
+%						\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$C$};
+%						\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$A$};
+%						\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{A}$};
+%						\node[feuille] (Rb) at ({\NiveauB},{(2)*\InterFeuilles}) {$\overline{C}$};
+%						% Arcs (MODIFIABLES : Styles)
+%						\draw[fleche] (R)--(Ra) node[etiquette] {$ $};
+%						\draw[fleche] (Ra)--(Raa) node[etiquette] {$ $};
+%						\draw[fleche] (Ra)--(Rab) node[etiquette] {$ $};
+%						\draw[fleche] (R)--(Rb) node[etiquette] {$ $};
+%					\end{tikzpicture}
+%				\end{center}
+%				%:-+-+-+-+- Fin
+%				\begin{solution}
+%					%:-+-+-+- Engendré par : http://math.et.info.free.fr/TikZ/Arbre/
+%					\begin{center}
+%						% Racine à Gauche, développement vers la droite
+%						\begin{tikzpicture}[xscale=1,yscale=1]
+%							% Styles (MODIFIABLES)
+%							\tikzstyle{fleche}=[->,>=latex,thick]
+%							\tikzstyle{noeud}=[fill=yellow,circle,draw]
+%							\tikzstyle{feuille}=[fill=yellow,circle,draw]
+%							\tikzstyle{etiquette}=[midway,fill=white,draw]
+%							% Dimensions (MODIFIABLES)
+%							\def\DistanceInterNiveaux{3}
+%							\def\DistanceInterFeuilles{2}
+%							% Dimensions calculées (NON MODIFIABLES)
+%							\def\NiveauA{(0)*\DistanceInterNiveaux}
+%							\def\NiveauB{(1.5)*\DistanceInterNiveaux}
+%							\def\NiveauC{(2.5)*\DistanceInterNiveaux}
+%							\def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+%							% Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+%							\node[noeud] (R) at ({\NiveauA},{(1)*\InterFeuilles}) {$ $};
+%							\node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$C$};
+%							\node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$A$};
+%							\node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{A}$};
+%							\node[feuille] (Rb) at ({\NiveauB},{(2)*\InterFeuilles}) {$\overline{C}$};
+%							% Arcs (MODIFIABLES : Styles)
+%							\draw[fleche] (R)--(Ra) node[etiquette] {\scriptsize{$\dfrac{7}{9}$}};
+%							\draw[fleche] (Ra)--(Raa) node[etiquette] {\scriptsize{$\dfrac{1}{7}$}};
+%							\draw[fleche] (Ra)--(Rab) node[etiquette] {\scriptsize{$\dfrac{6}{7}$}};
+%							\draw[fleche] (R)--(Rb) node[etiquette] {\scriptsize{$\dfrac{2}{9}$}};
+%						\end{tikzpicture}
+%					\end{center}
+%					%:-+-+-+-+- Fin
+%				\end{solution}
+%
+%
+%		\end{parts}
+%	\Question Chimie :  L'or 18 carats est constitué de $75,0\%$ d'or pur, $12,5\%$ de cuivre et $12,5\%$ d'argent. Un lingot d'or 18 carats pèse 1 kg.
+%		\begin{parts}
+%			\Part[1] Quel masse or pure contient un lingot ?
+%				\fillwithlines{15mm}
+%			\Part[1] Quelle masse de cuivre contient un lingot ?
+%				\fillwithlines{15mm}
+%			\Part[1] Quelle masse d'argent contient un lingot ?
+%				\fillwithlines{15mm}
+%			\Part[2] Quelle masse de cuivre faut-il pour obtenir 250g d'or 18 carats ?
+%				\fillwithlines{15mm}
+%		\end{parts}
+%	\Question Un groupe est composé de 36 élèves, 21 filles et 15 garçons. 6 élèves de ce groupe sont en 2GT1  et les 30 autres viennent de la 2GT3.
+%		\begin{parts}
+%			\Part Quelle est la part des garçons dans ce groupe ?
+%				\fillwithlines{15mm}
+%				\begin{solution}
+%					La part de garçons représente $\dfrac{15}{36}\approx 0,4166$ soit $41,67\%$
+%				\end{solution}
+%			\Part Quelle est la part des filles dans ce groupe ?
+%				\fillwithlines{15mm}
+%			\Part  Quelle est la part des élèves issus de 2GT1 ?
+%				\fillwithlines{15mm}
+%			\Part  Quelle est la part des élèves issus de 2GT3 ?
+%				\fillwithlines{15mm}
+%		\end{parts}
+%-------------------------------------------------------------------------------------------------
+%	\Question Benoît a réparé 351 machines à laver. Il a changé le joint sur 128 machines et le programmateur sur les autres dont 26 présentaient aussi un défaut de joint qu'il a aussi remplacé.
+%		\begin{parts}
+%			\Part Quel est le pourcentage de machines ayant un joint défectueux ?
+%				\fillwithlines{15mm}
+%				\begin{solution}
+%					Sur les 351 machines, il y a $128$ machines ayant un joint défectueux. Le pourcentage de machines ayant un joint défectueux est donc :
+%					\begin{center}
+%						$\dfrac{128}{351}\approx 0,3647$ soit $36,47\%$
+%					\end{center}
+%				\end{solution}
+%			\Part Quel est le pourcentage de machines ayant seulement le programmateur défectueux ?
+%				\fillwithlines{15mm}
+%				\begin{solution}
+%					Sur les 351 machines, il y a $351-128$ soit $223$ machines mais $26$ présentent également un joint défectueux. Il y a donc $223-26$ soit $217$ machines qui n'ont que le programmateur défectueux.\\
+%					La part de machines ayant uniquement le programmateur défectueux est donc :
+%					\begin{center}
+%						$\dfrac{217}{351}\approx 0,6182$ soit $61,82\%$
+%					\end{center}
+%				\end{solution}
+%		\end{parts}
+%
+%%-------------------------------------------------------------------------------------------------
+%
+%%	\Question[10] Calculer les proportions suivantes :
+%		\begin{multicols}{2}
+%			\begin{enumerate}
+%				\item $30\%$ de $200$ = .....
+%				\item $25\%$ de $100$ = .....
+%			\end{enumerate}
+%		\end{multicols}
+%	
+%	\Question[10] Calculer les évolutions suivantes :
+%		\begin{multicols}{2}
+%			\begin{enumerate}
+%				\item $200$ évolue de $+30\%$ = .....
+%				\item $25\%$ de $100$ = .....
+%			\end{enumerate}
+%		\end{multicols}
+%
+%-------------------------------------------------------------------------------------------------
+%        \clearpage
+%                \Question Thalès et Pythagore\\
+%                        Dans la figure ci-dessous, $AB=1$, $DB=3$, $AC=2$ et $AE=8$
+%                        \begin{center}
+%                                \begin{tikzpicture}[scale=1] % fixed points
+%                                        \tkzDefPoint(2,3){A}
+%                                        \tkzDefShiftPoint[A](0:1){B}
+%                                        \tkzDefShiftPoint[A](90:2){C}
+%                                        \tkzDefShiftPoint[A](90:8){E}
+%                                        \tkzDefShiftPoint[A](0:4){D}
+%                                        \tkzDefShiftPoint[A](90:2){C}
+%                                        \tkzDrawSegments(A,B B,C C,A A,D A,E D,E)
+%%                                       \tkzMarkSegments[mark=|](A,B A,C)
+%                                        \tkzDrawPoints(A,B,C,D,E)
+%                                        \tkzLabelPoints(B,D)
+%                                        \tkzLabelPoints[above left](A,C,E)
+%                                \end{tikzpicture}
+%                        \end{center%                        \begin{parts}
+%                                \Part Montrer que $(BC)$ et $(DE)$ sont parallèles
+%%                                       \fillwithlines{35mm}
+%                                        Selon le théorème de Thalès, on a la double égalité suivante :
+%                                        \begin{center}
+%                                                $\dfrac{AB}{AD}=\dfrac{AC}{AE}=\dfrac{BC}{DE}$
+%                                        \end{center}
+%                                        On sait que  $AB=1$, $DB=3$, $AC=2$ et $AE=8$. Donc $AD=AB+BD=1+3=4$.\\
+%                                        On calcule séparément $\dfrac{AB}{AD}=\dfrac{1}{4}$ et $\dfrac{AC}{AE}=\dfrac{2}{8}=\dfrac{1}{4}$\\
+%                                        Les deux quotients sont égaux, on peut donc en déduire que $(BC)$ et $(DE)$ sont parallèles.
+%                                \Part Sachant que le triangle $ABC$ est rectangle en $A$
+%                                        \begin{enumerate}
+%                                                \item Calculer $BC$
+%%                                                       \fillwithlines{30mm}
+%                                                        Si le triangle $ABC$ est rectangle en $A$ alors le théorème de Pythagore s'applique et on a donc l'égalité suivante :
+%                                                        \begin{center}
+%                                                                $BC^2=AB^2+AC^2$
+%                                                        \end{center}
+%                                                        $BC^2=1^2+2^2=1+4=5$ donc $BC=\sqrt{5}=\sqrt{5}$
+%                                                \item Calculer $DE$
+%%                                                       \fillwithlines{30mm}
+%                                                        Selon la double égalité de Thalès de la première question, on a :
+%                                                        \begin{center}
+%                                                                $\dfrac{AB}{AD}=\dfrac{BC}{DE}$\\
+%                                                                donc $\dfrac{1}{4}=\dfrac{\sqrt{5}}{DE}$\\
+%                                                                d'où $DE=\sqrt{5}\times \dfrac{4}{1}=4 \sqrt{5}$
+%                                                        \end{center}
+%                                        \end{enumerate}
+%                        \end{parts}
+%-------------------------------------------------------------------------------------------------
+%\clearpage
+%	            \Question Fonctions Affines\\
+%                        Dans le repère orthonormé ci-dessous, la courbe $\mathcal{C}_f$ est la représentation graphique de $f$ une fonction définie par $f(x)=x - 1$.   
+%                        \begin{center}
+%                                \begin{tikzpicture}
+%                                        \begin{axis}[
+%                                                axis x line=middle,
+%                                                axis y line=middle,
+%                                            xmin = -10, xmax = 10,
+%                                            ymin = -10, ymax = 10,
+%                                            xtick distance = 1,
+%                                            ytick distance = 1,
+%                                            grid = both,
+%                                            minor tick num = 1,
+%                                            major grid style = {gray},
+%                                            minor grid style = {gray!25},
+%                                            width = 0.75\textwidth,
+%                                            height = 0.75\textwidth]
+%                                            \draw[very thick,->] (axis cs:0,0)->(axis cs:1,0) node[below, midway] {$\vect{i}$};
+%                                            \draw[very thick,->] (axis cs:0,0)->(axis cs:0,1) node[left, midway] {$\vect{j}$};
+%                                                \draw (axis cs:0,0) circle node [left, below] {$O$};
+%                                            \addplot[
+%                            domain = -9:9,
+%                            samples = 50,
+%                                                smooth,
+%                                                thick,
+%                                                blue,
+%                                            ] {x - 1} node[pos=0.35,above,] {$\mathcal{C}_f$};
+%                                            \addplot[
+%                                                domain = -9:9,
+%                                                samples = 50,
+%                                                smooth,
+%                                                thick,
+%                                                green,
+%                                            ] {5*x/2 + 2} node[pos=0.55,above,] {$\mathcal{C}_h$};
+%                                        \end{axis}
+%                                \end{tikzpicture}
+%                        \end{center}
+%                \begin{parts}
+%                \small{
+%                        \Part Représenter la fonction $g(x)=1 - \dfrac{x}{2}$
+%                                \fillwithlines{25mm}
+%                        \Part Donner le coefficient directeur et l'ordonnée à l'origine de la fonction $g$.
+%                                \fillwithlines{20mm}
+%                        \Part Résoudre $f(x)=g(x)$ et donner une interprétation de votre résultat.
+%                                \fillwithlines{25mm}
+%                        \Part Déterminer l'expression algébrique de la fonction $h$ dont la représentation graphique est la droite $\mathcal{C}_h$
+%                                \fillwithlines{25mm}
+%                        \Part Déterminer les coordonnées du point $I$, intersection de la courbe $\mathcal{C}_f$ et $\mathcal{C}_h$.
+%                                \fillwithlines{25mm}
+%                \Part Résoudre $f(x)=0$
+%                                \fillwithlines{25mm}
+%                        \Part Compléter le tableau de signe et variations de $f$ ci-dessous
+%                                \begin{center}
+%                                        \begin{tikzpicture}
+%                                           \tkzTabInit %[lgt=3]
+%                                             {$x$ / 1 , Signe de $f$ / 1, Variations de $f$ / 3 }
+%                                             {$+\infty$, , $+\infty$}
+%                                           \tkzTabLine
+%                                             { ,  ,  ,  , }
+%                                           \tkzTabVar
+%                                             { ,  ,  }
+%                                        \end{tikzpicture}
+%                                \end{center}
+%                        }
+%                \end{parts}
+%
+%%----------------------------------------------------------------------------------------
+%    \clearpage
+%        \Question Fonctions Homographiques\\
+%                On considère les fonctions $f$ et $g$ définies par :
+%                \begin{center}
+%                        $f(x)=\dfrac{5 - x}{1 - 2 x}$ et $g(x)=\dfrac{2 x - 3}{4 x - 4}$
+%                \end{center}
+%        \begin{parts}
+%                \Part Déterminer l'ensemble de définition de $f$ et $g$.\\
+%                        \begin{enumerate}
+%                                \item $f$ est définie quand son dénominateur est différent de zéro ($1 - 2 x\neq0$)\\
+%                                Le domaine de définition de $f$ est donc $\mathcal{D}_f=]-\infty;\dfrac{1}{2}[\cup]\dfrac{1}{2};+\infty[$\\
+%                                \item $g$ est définie quand son dénominateur est différent de zéro ($4 x - 4\neq0$)\\
+%                                Le domaine de définition de $g$ est donc $\mathcal{D}_g=]-\infty;1[\cup]1;+\infty[$
+%                        \end{enumerate}
+%                \Part Démontrer que ces fonctions sont des fonctions homographiques.
+%                        \begin{center}
+%                                $f(x) = \dfrac{5 - x}{1 - 2 x}$
+%                        \end{center}
+%                        On a $a=-1$, $b=5$, $c=-2$ et $d=1$\\
+%                        On a bien $c\neq 0$ et $ad-bc = -1 - -10 = 9\neq 0$\\
+%                        Par conséquent, $f$ est bien une fonction homographique.
+%            \begin{center}
+%                                $g(x) = \dfrac{2 x - 3}{4 x - 4}$
+%                        \end{center}
+%                        On a $a=2$, $b=-3$, $c=4$ et $d=-4$\\
+%                        On a bien $c\neq 0$ et $ad-bc = -8 - -12 = 4\neq 0$\\
+%                        Par conséquent, $g$ est bien une fonction homographique.
+%                \Part Résoudre l'équation $f(x)=g(x)$
+%                        \begin{align*}
+%                                f(x) = g(x) & \Leftrightarrow \dfrac{5 - x}{1 - 2 x} = \dfrac{2 x - 3}{4 x - 4} \\
+%                            & \Leftrightarrow \dfrac{5 - x}{1 - 2 x} – \dfrac{2 x - 3}{4 x - 4} = 0\\
+%                            & \Leftrightarrow \dfrac{\left(5 - x\right)\times\left(4 x - 4\right)}{\left(1 - 2 x\right)\times\left(4 x - 4\right)}-\dfrac{\left(1 - 2 x\right)\times\left(5 - x\right)}{\left(1 - 2 x\right)\times\left(4 x - 4\right)}\\
+%                            & \Leftrightarrow \dfrac{- \left(1 - 2 x\right) \left(2 x - 3\right) + \left(5 - x\right) \left(4 x - 4\right)}{\left(1 - 2 x\right) \left(4 x 
+%- 4\right)} = 0\\
+%                            & \Leftrightarrow \dfrac{16 x - 17}{\left(1 - 2 x\right) \left(4 x - 4\right)} = 0
+%                        \end{align*}
+%
+%                La solution ne dépend que du numérateur $16 x - 17$.\\
+%                La solution est donc $x=\dfrac{17}{16}$
+%
+%                \Part Compléter le tableau de signe de $f$ ci-dessous
+%                        \begin{center}
+%                                \begin{tikzpicture}
+%                                        \tkzTabInit[espcl=4] %[lgt=3]
+%                                                {$x$ /1 , Signe de\\$5 - x$ /2,Signe de\\$1 - 2 x$ / 2, Signe de $f$/2 }
+%                                                {$+\infty$, $\dfrac{1}{2}$ , $5$ , $+\infty$}
+%                                        \tkzTabLine
+%                                                { , + , + , + , z , - , }
+%                                        \tkzTabLine
+%                                                { , + , Z , - , - , - , }
+%                                        \tkzTabLine
+%                                                { , - , z , - , d , - , }
+%                                \end{tikzpicture}
+%                        \end{center}
+%        \end{parts}
+%----------------------------------------------------------------------------------------
+%		\Question  Pythagore et Thales\\
+%			Justifie le mieux possible tes réponses\\
+%			Soit un triangle BAC rectangle en A tel que AB=6cm et AC=8cm.
+%			\begin{parts}
+%				\Part Construire le triangle ABC.
+%				\Part Calculer BC.
+%				\Part Placer le point E sur le segment [AB] tel que BE=1,5cm. Placer le point F sur le segment [CB] tel que BF=2,5cm.
+%				\Part Montrer que les droites (AC) et (EF) sont parallèles.
+%				\Part Calculer EF.
+%			\end{parts}
+%----------------------------------------------------------------------------------------
+%		\Question On  dépose  sur  l'un  des plateaux  d'une  balance,  une  autruche  de  129,6 kg. Combien  faut-il  mettre  de  calyptes d'Hélène  (le plus  petit oiseau  du  monde)  sur  l'autre  plateau pour  qu'il  y  ait équilibre  ?
+%		\uplevel{Info  :  un  calypte  d'Hélène  pèse  en  moyenne  1,8  g}
+%%			\fillwithlines{25mm}
+%			 Il faut $\dfrac{129,6}{1,8}=72$ calypte d'Hélène
+%----------------------------------------------------------------------------------------
+%		\Question Proportions
+%			\begin{parts}
+%				\Part Vraie-Faux
+%				\Part Le  périmètre  d'un  carré  est  proportionnel  à  la  longueur  des  côtés.
+%					
+%					\begin{oneparcheckboxes}
+%						\choice Vrai \CorrectChoice Faux
+%					\end{oneparcheckboxes}
+%				\Part L'aire  d'un  carré  est  proportionnelle  à  la  longueur  des  côtés.
+%				\Part Le  prix  d'un  ordinateur  portable  est  proportionnel  à  son  poids.
+%				\Part Le  prix  d'une  bouteille  de  vin  est  proportionnel  à  son  âge.
+%				\Part La  masse  d'une  quantité  d'eau  est  proportionnelle  au  volume   de  cette  quantité  d'eau.
+%				\Part Le  nombre  de  dents  est  proportionnel  à  l'âge  de  la  personne.
+%				\Part La  facilité  d'un  exercice  est  proportionnelle  à  sa  longueur.
+%			\end{parts}
+%----------------------------------------------------------------------------------------
+%        \Question Fonctions Affines\\
+%			Dans le repère orthonormé ci-dessous, la courbe $\mathcal{C}_f$ est la représentation graphique de $f$ une fonction définie par $f(x)=2x^2-3x+1$.
+%			\begin{center}
+%        			\begin{tikzpicture}
+%					\begin{axis}[					
+%						axis x line=middle,
+%						axis y line=middle,
+%					    xmin = -5, xmax = 5,
+%					    ymin = -5, ymax = 5,
+%					    xtick distance = 1,
+%					    ytick distance = 1,
+%					    grid = both,
+%					    minor tick num = 1,
+%					    major grid style = {gray},
+%					    minor grid style = {gray!25},
+%					    width = 0.75\textwidth,
+%					    height = 0.75\textwidth]
+%					    \draw[very thick,->] (axis cs:0,0)->(axis cs:1,0) node[below, midway] {$\vect{i}$};
+%					    \draw[very thick,->] (axis cs:0,0)->(axis cs:0,1) node[left, midway] {$\vect{j}$};
+%					    	\draw (axis cs:0,0) circle node [left, below] {$O$};
+%					    \addplot[
+%					        domain = -5:5,
+%					        samples = 50,
+%					        smooth,
+%					        thick,
+%					        blue,
+%					    ] {(-5/2)*x+2} node[near end,above,] {$\mathcal{C}_f$};
+%					    \addplot[
+%					        domain = -5:5,
+%					        samples = 50,
+%					        smooth,
+%					        thick,
+%					        green,
+%					    ] {(2/3)*x-1} node[near end,above,] {$\mathcal{C}_h$};
+%%					    \addlegendentry{$g$}
+%					\end{axis}
+%				\end{tikzpicture}
+%			\end{center}
+%        	\begin{parts}
+%        	\small{
+%        		\Part Représenter la fonction $g(x)=3x+1$
+%%        			\fillwithlines{25mm}
+%				\\La fonction $g$ est une fonction affine ( forme $ax+b$). La représentation graphique de $g$ est donc une droite. \\
+%				Selon le premier axiome d'Euclide, il faut deux points pour définir de façon unique une droite. nous allons donc déterminer deux couples antécédent-image qui constitueront les coordonnées des deux points dont nous avons besoin.
+%				\begin{enumerate}
+%					\item On choisi par commodité 0 comme premier antécédent d'où :\\
+%					$g(0)=3\times0 + 1 = 1$ on a donc le premier point $G_1$ aux coordonnées $(0;1)$
+%					\item On détermine maintenant l'image d'un deuxième antécédent d'où :\\
+%					$g(1)=3\times 1 + 1=4$ on a donc le deuxième point $G_2$ aux coordonnées $(1;4)$
+%					\item On place les points $G_1$ et $G_2$ puis on trace la droite passant par ses deux points et on la nomme $\mathcal{C}_g$.
+%				\end{enumerate}
+%        		\Part Donner le coefficient directeur et l'ordonnée à l'origine de la fonction $g$.
+%%        			\fillwithlines{20mm}
+%				\\Comme énoncé à la question précédente, la fonction $g$ est une fonction affine donc sa forme est $ax+b$ où $a$ est appelé "coefficient directeur" et $b$ "ordonnée à l'origine".\\
+%				Donc par analogie entre $3x+1$ et $ax+b$, le coefficient directeur est $3$ et l'ordonnée à l'origine est $1$.
+%	        	\Part Résoudre $f(x)=g(x)$ et donner une interprétation de votre résultat.
+%%	        		\fillwithlines{25mm}
+%				\begin{align*}
+%					f(x)&=g(x)\text{    (On remplace $f$ et $g$ par leurs expressions)}\\
+%					\Leftrightarrow -\dfrac{5}{2}x+2 &= 3x+1\\
+%					\Leftrightarrow 2-1 &= 3x+\dfrac{5}{2}x\\
+%					\Leftrightarrow 1 &= \dfrac{11}{2}x\\
+%					\Leftrightarrow 1\times\dfrac{2}{11} &= x
+%				\end{align*}
+%				Donc pour que $f(x)=g(x)$ il faut que $x=\dfrac{2}{11}$. Cette solution de l'équation est la seule valeur d'antécédent pour laquelle $f$ et $g$ donnent la même image.\\
+%				 Il s'agit donc de l'abscisse du point d'intersection des deux droite représentative de $f$ et $g$ ($\mathcal{C}_f$ et $\mathcal{C}_g$).
+%	        	\Part Déterminer l'expression algébrique de la fonction $h$ dont la représentation graphique est la droite $\mathcal{C}_h$
+%%	        		\fillwithlines{25mm}
+%				\\ La courbe $\mathcal{C}_h$ est une droite donc l'expression algébrique de la fonction $h$ est de la forme $ax+b$.\\
+%				On remarque que $\mathcal{C}_h$ passe par le point $(0;-1)$ ce qui signifie que $b=1$.\\
+%				La courbe $\mathcal{C}_h$ passe par le point de coordonnées $(3;1)$. Or nous savons que :\\
+%				$a=\dfrac{\Delta_y}{\Delta_x}=\dfrac{1-(-1)}{3-0}=\dfrac{2}{3}$.\\
+%				Donc l'expression de $h$ est $h(x)=\dfrac{2}{3}x+1$.
+%	        	\Part Déterminer les coordonnées du point $I$, intersection de la courbe $\mathcal{C}_f$ et $\mathcal{C}_h$.
+%%	        		\fillwithlines{25mm}
+%				Le point $I(x_I;y_I)$ avec $x_I$ solution de $f(x)=h(x)$ et $y_I=f(x_I)=h(x_I)$
+%	        	\Part Résoudre $f(x)=0$
+%%	        		\fillwithlines{25mm}
+%				\begin{align*}
+%					f(x)&=0\text{    (On remplace $f$ par son expression)}\\
+%					\Leftrightarrow -\dfrac{5}{2}x+2 &= 0\\
+%					\Leftrightarrow -\dfrac{5}{2}x &= -2\\
+%					\Leftrightarrow x &= -2\times -\dfrac{2}{5}\\
+%					\Leftrightarrow x &= \dfrac{4}{5}
+%				\end{align*}
+%				Donc $S=\lbrace\dfrac{4}{5}\rbrace$
+%	        	\Part Compléter le tableau de signe et variations de $f$ ci-dessous\\
+%	        		\begin{center}
+%					\begin{tikzpicture}
+%					   \tkzTabInit %[lgt=3]
+%					     {$x$ / 1 , Signe de $f$ / 1, Variations de $f$ / 3 }
+%					     {$+\infty$, $\dfrac{-b}{a}$, $+\infty$}
+%					   \tkzTabLine
+%					     { + ,, z ,, - }
+%					   \tkzTabVar
+%					     { +/$+\infty$, R/ ,  -/$-\infty$}
+%%						\tkzTabIma{1}{3}{2}{0}
+%%						\tkzTabIma{3}{5}{4}{0}
+%%						\tkzTabTan{1}{3}{3}{$f(\dfrac{-b}{a})$}
+%					\end{tikzpicture}
+%				\end{center}
+%				
+%%	        		\begin{center}
+%%					\begin{tikzpicture}
+%%					   \tkzTabInit %[lgt=3]
+%%					     {$x$ / 1 , Signe de $f$ / 1, Variations de $f$ / 3 }
+%%					     {$+\infty$, $x_1$, $\dfrac{-b}{a}$, $x_2$, $+\infty$}
+%%					   \tkzTabLine
+%%					     {, + , z ,  , - , , z , + ,}
+%%					   \tkzTabVar
+%%					     { +/$+\infty$, R/ , -/, R/ , +/$+\infty$}
+%%						\tkzTabIma{1}{3}{2}{0}
+%%						\tkzTabIma{3}{5}{4}{0}
+%%						\tkzTabTan{1}{3}{3}{$f(\dfrac{-b}{a})$}
+%%					\end{tikzpicture}
+%%				\end{center}
+%			}        	
+%        	\end{parts}
+%----------------------------------------------------------------------------------------
+%\clearpage
+%	\Question Soit les points $\Point{A}{x_A}{y_A}$, $\Point{B}{x_B}{y_B}$ et $\Point{C}{x_C}{y_C}$
+%		\begin{parts}
+%			\Part Placer les points A, B et C dans le repère orthonormé suivant :
+%					\begin{center}
+%						\begin{tikzpicture}
+%							\begin{axis}[					
+%									axis x line=middle,
+%									axis y line=middle,
+%								    xmin = -5, xmax = 5,
+%								    ymin = -5, ymax = 5,
+%								    xtick distance = 1,
+%								    ytick distance = 1,
+%								    grid = both,
+%								    minor tick num = 1,
+%								    major grid style = {gray},
+%								    minor grid style = {gray!25},
+%								    width = 0.5\textwidth,
+%								    height = 0.5\textwidth]
+%								    \addplot  coordinates {(2,3)}  node[pos=1,label={[shift={(-0.5,-1.3)}]{$S$}}, ,circle,fill,inner sep=1pt,name=S] {};
+%								\end{axis}
+%								
+%							\end{tikzpicture}
+%					\end{center}
+%			\Part Donner les coordonnées des vecteurs :
+%				\begin{enumerate}
+%					\item $\Coord{AB}{x_B-x_A=?}{y_B-y_A=?}$
+%					\item $\Coord{AC}{x_C-x_A=?}{y_C-y_A=?}$
+%						\fillwithlines{15mm}
+%					\item $\Coord{BC}{x_C-x_B=?}{y_C-y_B=?}$
+%						\fillwithlines{15mm}
+%				\end{enumerate}
+%			\Part Calculer les normes des vecteurs suivants en simplifiant vos résultats :
+%				\begin{enumerate}
+%					\item
+%						\begin{align*}
+%							\|\vect{AB}\|&=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}\\
+%					    					 &=\sqrt{x_{AB}^2+y_{AB}^2}\\
+%					    					 &=\sqrt{xy_{AB}}\\
+%					    					 &=blabla
+%						\end{align*}
+%					\item $\|\vect{AC}\|=$
+%						\fillwithlines{15mm}
+%					\item $\|\vect{BC}\|=$
+%						\fillwithlines{15mm}
+%				\end{enumerate}
+%		\end{parts}        	
+%			\begin{description}
+%				\item Dans un lycée, on considère les élèves ayant obtenu le baccalauréat STMG :
+%					\setlength\parindent{9mm}
+%					\begin{itemize}[label=\textbullet]
+%						\item 38\,\% de ces élèves poursuivent leurs études en BTS ou DUT et parmi eux, 56\,\% après l'obtention du BTS ou DUT poursuivent leurs études et obtiennent une licence.
+%						\item Les autres élèves poursuivent d'autres études après le baccalauréat, et parmi eux, 61\,\% obtiennent une licence.
+%					\end{itemize}
+%					\setlength\parindent{0mm}
+%					On appelle :			
+%					\begin{description}
+%						\item[$T$] : l'évènement: \og pour suivre ses études en BTS ou DUT\fg{} ;
+%						\item[$A$] : l'évènement: \og pour suivre d'autres études après le baccalauréat\fg{} ; 
+%						\item[$L$] : l' évènement : \og obtenir une licence \fg.
+%						\item[$\overline{L}$]  désigne l'évènement contraire de l'évènement $L$.
+%					\end{description}
+%			\end{description}
+%			\vspace{0.25cm}
+%			\begin{parts}
+%				\Part[6] compléter l'arbre suivant qui modélise la situation:
+%                    \begin{solution}
+%                        \begin{center}
+%                            \begin{tikzpicture}[xscale=1,yscale=1]
+%                                \tikzstyle{fleche}=[->,>=latex,thick]
+%                                \tikzstyle{noeud}=[fill=white,circle]
+%                                \tikzstyle{feuille}=[fill=white]
+%                                \tikzstyle{etiquette}=[midway,fill=white,draw]
+%                                \def\DistanceInterNiveaux{4}
+%                                \def\DistanceInterFeuilles{2}
+%                                \def\NiveauA{(0)*\DistanceInterNiveaux}
+%                                \def\NiveauB{(1.5)*\DistanceInterNiveaux}
+%                                \def\NiveauC{(2.5)*\DistanceInterNiveaux}
+%                                \def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+%                                \node[noeud] (R) at ({\NiveauA},{(1.5)*\InterFeuilles}) {$ $};
+%                                \node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$T$};
+%                                \node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$L$};
+%                                \node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{L}$};
+%                                \node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$A$};
+%                                \node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$L$};
+%                                \node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{L}$};
+%                                \draw[fleche] (R)--(Ra) node[etiquette] {$38\%$};
+%                                \draw[fleche] (Ra)--(Raa) node[etiquette] {$56\%$};
+%                                \draw[fleche] (Ra)--(Rab) node[etiquette] {$44\%$};
+%                                \draw[fleche] (R)--(Rb) node[etiquette] {$62\%$};
+%                                \draw[fleche] (Rb)--(Rba) node[etiquette] {$61\%$};
+%                                \draw[fleche] (Rb)--(Rbb) node[etiquette] {$44\%$};
+%                            \end{tikzpicture}
+%                        \end{center}
+%                    \end{solution}
+%				\Part[1] Déterminer la valeur de la probabilité $p(T \cap L)$.
+%                    \begin{solution}
+%						$p(T\cap L)=p(T)\times p_T(L)=0.38\times 0.56=0.2128$
+%					\end{solution}
+%				\Part[1] Montrer que $p(L) = 59.1\%$.
+%                    \begin{solution}
+%						$p(L) = p(T\cap L)+p(A\cap L) = 0.2128+0.62\times 0.61=0.2128+0.3782=0.591$
+%					\end{solution}
+%				\Part[1] Déterminer la probabilité d'avoir suivi une formation en BTS ou DUT sachant que l'on a obtenu une licence. On arrondira le résultat à  $0,01$\,\%.
+%                    \begin{solution}
+%						La probabilité d'avoir suivi une formation en BTS ou DUT sachant que l'on a obtenu une licence, est : 
+%						\begin{center}
+%							$p_L(T) =\dfrac{p(L\cap T)}{p(L)}=\dfrac{0.2128}{0.591}\approx 0.3601$
+%						\end{center}
+%					\end{solution}
+%				\Part[2] Déterminer la valeur arrondie à  $0,01$\,\% de la probabilité $p_L(A)$. Interpréter.
+%                    \begin{solution}
+%						\begin{center}
+%							$p_L(A)=\dfrac{p(A\cap L)}{p(L)}=\dfrac{0.3782}{59.1}\approx 0.0064$
+%						\end{center}
+%						C'est la probabilité de ne pas avoir suivi une formation en BTS ou DUT sachant que l'on a obtenu une licence.
+%					\end{solution}
+%			\end{parts}
+%\clearpage
+%
+%        \Question 
+%			Le tableau suivant donne le nombre de morts sur les routes françaises par an de 1998 à 2006.
+%			\begin{center}
+%				\begin{tabularx}{\linewidth}{|m{2cm}|*{9}{>{\centering \arraybackslash}X|}}\hline
+%					Année &1998 &1999 &2000 &2001 &2002 &2003 &2004 &2005 &2006\\ \hline
+%					Rang $\left(x_i\right)$& 1 &2 &3 &4 &5 &6 &7 &8 &9\\ \hline
+%					Nombre de morts $\left(y_i\right)$& 5368 & 6098 & 7332 & 8050 & 5526 & 7865 & 7182 & 6208 & 4838\\ \hline
+%					\multicolumn{10}{r}{\footnotesize Source: d'après www.securite-routiere.gouv.fr}
+%				\end{tabularx}
+%			\end{center}
+%			\begin{parts}
+%				\Part[2] Sur le graphique ci-dessous, on a représenté une partie du nuage de points $M_i\left(x_i~;~y_i\right)$.\\
+%				Compléter ce nuage de points à l'aide du tableau en plaçant le point d'abscisse 4 et le point d'abscisse 7.
+%
+%				\begin{center}
+%					\begin{tikzpicture}[scale=0.75]
+%						\begin{axis}[
+%								grid= both ,
+%								minor tick num=1,
+%								minor grid style={line width=.1pt, dashed	},
+%								major grid style={line width=.4pt},
+%								width=0.8\textwidth ,
+%								xlabel = {Rang $\left(x_i\right)$} ,
+%								ylabel = {Nombre de morts $\left(y_i\right)$} ,
+%								xmin = 0, xmax = 15,
+%								ymin = 2500, ymax = 10000,
+%								yticklabel style={
+%									/pgf/number format/.cd,%
+%									scaled y ticks = false,
+%									set thousands separator={},
+%									fixed
+%								},
+%								%legend entries={Courbe 1, Courbe 2},
+%								%legend style={at={(0,1)},anchor=north west}
+%								]
+%							\addplot [only marks,mark=*] coordinates {(1,5368) (2,6098) (3,7332)  (5,5526) (6, 7865)  (8,6208) (9, 4838)}; % Tracé point à point
+%							\addplot [very thick] expression[domain=0:15]{9142.722-485.967*x}; % Équation analytique
+%							\addplot [red,dashed,very thick] expression[domain=0:13]{2800}; % Équation analytique
+%							\addplot [red,only marks,mark=*] coordinates {(4,8050) (7,7182)}; % Tracé point à point
+%						\end{axis}
+%					\end{tikzpicture}
+%				\end{center}
+%				\part[2] Sur le graphique ci-dessus est tracée la droite d'ajustement. À l'aide de cette droite d'ajustement, par lecture graphique, déterminer une prévision du nombre de morts en 2010.
+%%				\fillwithlines{10mm}
+%                    \begin{solution}
+%                        environ 2 800
+%                    \end{solution}
+%				\part[2] On a observé en réalité que le nombre de personnes ayant perdu la vie sur les routes françaises en 2010 a diminué de 6\% par rapport à l'année 2000.
+%Quel est le nombre réel de victimes sur les routes françaises en 2010 ? On donnera le résultat arrondi à l'unité.
+%%					\fillwithlines{20mm}
+%					\begin{solution}
+%						En 2000, il y avait 7332 morts; en 2010 il y en a eu :
+%						\begin{center}
+%							$7332\times \left( 1-\dfrac{6}{100}\right)\approx 6892$
+%						\end{center}
+%					\end{solution}
+%			\end{parts}
+%\clearpage
+%    
+%    \Question
+%				Le tableau suivant indique, sur la période 2002-2012, en France, la proportion de déchets recyclés exprimée en pourcentage des déchets d'emballages ménagers.
+%				\begin{center}
+%					\begin{tabularx}{1.02\linewidth}{|m{2.5cm}|*{11}{>{\centering \arraybackslash}X|}}\hline
+%					Année 		&2002 &2003 &2004 &2005 &2006 &2007 &2008 &2009 &2010 &2011 &2012\\ \hline
+%					Pourcentage de
+%					déchets recyclés (en \,$\%$)&62.2 &49.0 &51.9 &47.1 &51.5 &58.7 &54.6 &58.0 &50.2 &47.6 &54.2 \\ \hline
+%					\end{tabularx}
+%				\end{center}
+%				\begin{parts}
+%					\Part[1] Montrer que le taux global d'évolution, arrondi à l'unité, entre 2004 et 2008 est de $5$\,\%.
+%%						\fillwithlines{30mm}
+%						\begin{solution}
+%							\begin{center}
+%								$\dfrac{pourcent_{2008}-pourcent_{2004}}{pourcent_{2004}}\times 100 = \dfrac{54.6-51.9}{51.9}\times 100 \approx 5.2$ soit 5\%
+%							\end{center}
+%						\end{solution}
+%					\Part[2] Déterminer le taux annuel moyen entre 2004 et 2008. On donnera le résultat en pourcentage arrondi au centième.
+%%						\fillwithlines{30mm}
+%						\begin{solution}
+%							Le taux global qui fait passer de 2004 à 2008 est de 5\%. Le taux moyen est donc :
+%							\begin{center}
+%								$t_m=\sqrt[4]{1+\dfrac{5}{100}}-1\approx 1.2272\%$
+%							\end{center}
+%						\end{solution}
+%					\Part[2] On conjecture qu'à partir de 2012, le taux annuel est de $+ 7.07$\,\%. Avec ce modèle, quel est le taux de recyclage en 2020 ? On donnera le résultat en pourcentage arrondi au dixième.
+%%						\fillwithlines{30mm}
+%						\begin{solution}
+%							De 2012 à 2020, il y a 8 ans, le taux en 2012 était de 54.2\%. Le taux en 2020 est donc :
+%							\begin{center}
+%								$54.2\times\left(1+\dfrac{7.07}{100}\right)^8$ soit environ 93.61\%
+%							\end{center}
+%						\end{solution}
+%				\end{parts}
+%\clearpage
+%    
+%    \Question
+%		Une usine produit des bonbons. Le responsable "production" a modélisé le cout de production de chacune des machines en fonction du poids de bonbons produit pour une machine. Si $x$ est le poids de bonbons produit alors $C(x)$ donne le coût de production au kilogramme en fonction de $x$ avec :
+%		\begin{center}
+%			$C(x)=\dfrac{x^{3}}{3} - 7 x^{2} + 45 x + 13$\\
+%		\end{center}
+%		\begin{parts}
+%			\Part[3] Déterminer $C'(x)$, la fonction dérivée de $C(x)$\\
+%			\begin{solution}
+%				La fonction $C(x)$ est de la forme $u+v$ on a donc :
+%				\begin{center}
+%					$C(x)=u+v+w+z$\\
+%					avec $u=\dfrac{1}{3}x^3$, $v=-7x^2$, $w=45x$ et $z=13$
+%				\end{center}
+%				$u$, $v$, $w$ et $z$ sont de la forme $kx^n$ or $(kx^n)'=knx^{n-1}$ on a donc :
+%				\begin{center}
+%					$C'(x)=u'+v'+w'+z'$\\
+%					avec $u'=1x^2$, $v'=-14x$, $w'=45$ et $z'=0$
+%				\end{center}
+%				d'où :
+%				\begin{center}
+%					$C'(x)=1x^2+-14x+45 +0$\\
+%				\end{center}
+%				et donc :
+%				\begin{center}
+%					$C'(x)=1x^2+-14x+45$\\
+%				\end{center}
+%			\end{solution}
+%			\Part[3] Résoudre $C'(x)=0$\\
+%			\begin{solution}
+%				$C'(x)$ est un polynôme du second degré, on utilise donc la méthode du discriminant.\\
+%				On écrit donc $C'(x)$ avec :
+%				\begin{center}
+%					$C'(x)=ax^2+bx+c$\\
+%					$a=1$, $b=-14$ et $c=45$
+%				\end{center}
+%				On calcul $\Delta=b^2-4ac$ d'où :
+%				\begin{align*}
+%					\Delta	&=b^2-4ac\\
+%							&=-14^2-4145\\
+%							&=16=\left(4\right)^2
+%				\end{align*}
+%
+%				Donc $\Delta>0$, il y a donc 2 solutions à l'équation $C'(x)=0$
+%				\begin{multicols}{2}
+%				\begin{align*}
+%					x_1&=\dfrac{-b-\sqrt{\Delta}}{2a}\\
+%					x_1&=\dfrac{-\left(-14\right)-\sqrt{16}}{2\times+1}\\
+%					x_1&=\dfrac{-\left(-14\right)-4}{2\times+1}\\
+%					x_1&=5
+%				\end{align*}
+%				
+%				\begin{align*}
+%					x_2&=\dfrac{-b+\sqrt{\Delta}}{2a}\\
+%					x_1&=\dfrac{-\left(-14\right)+\sqrt{16}}{2\times+1}\\
+%					x_1&=\dfrac{-\left(-14\right)+4}{2\times+1}\\
+%					x_2&=9
+%				\end{align*}
+%				\end{multicols}
+%				Les 2 solutions sont donc $x_1=5$ et $x_2=9$
+%			\end{solution}
+%			\Part[3] En déduire le signe de $C'$ et les variations de $C$\\
+%			\begin{solution}
+%				Le polynôme est du signe de $-a$ entre ses racines d'où le tableau de signe et de variation suivant :
+%				\begin{center}
+%					\begin{tikzpicture}
+%						\tkzTabInit{$x$/1,$C'(x)$/1,$C$/3}{$-\infty$,$5$,$9$,$\infty$}
+%						\tkzTabLine{,+,z,-,z,+}
+%						\tkzTabVar{-/$-\infty$,+/$C\left(5\right)$,-/$C\left(9\right)$,+/$+\infty$}
+%					\end{tikzpicture}
+%				\end{center}
+%			\end{solution}
+%			\Part[3] Conclure sur la quantité optimale de production et en donner donc le coût minimal au kilogramme\\
+%			\begin{solution}
+%				La quantité optimale à produire est $9$ kilogrammes pour :
+%				\begin{align*}
+%					C(9)&=\dfrac{1}{3}\times \left(9\right)^3+-7\times \left(9\right)^2+45\times 9+13\\
+%						&=94
+%				\end{align*}
+%			\end{solution}
+%		\end{parts}
+%    
+%    \Question Dans le repère orthonormé ci-dessous,
+%            \begin{parts}
+%                \Part[12] Lire les coordonnées des vecteurs suivants :
+%                    \begin{multicols}{3}
+%                        \begin{enumerate}
+%
+%
+%        \item $\Point{\underset{beta}{\vect{\beta}}}{.........}{..........}$
+%
+%        \item $\Point{\underset{epsilon}{\vect{\epsilon}}}{.........}{..........}$
+%
+%        \item $\Point{\underset{gamma}{\vect{\gamma}}}{.........}{..........}$
+%
+%        \item $\Point{\underset{pi}{\vect{\pi}}}{.........}{..........}$
+%
+%        \item $\Point{\underset{sigma}{\vect{\sigma}}}{.........}{..........}$
+%
+%        \item $\Point{\underset{upsilon}{\vect{\upsilon}}}{.........}{..........}$
+%
+%                        \end{enumerate}
+%                    \end{multicols}
+%            \end{parts}
+%
+%            \begin{center}
+%                \begin{tikzpicture}
+%                    \begin{axis}[
+%                            axis x line=middle,
+%                            axis y line=middle,
+%                            xmin = -7, xmax = 7,
+%                            ymin = -7, ymax = 7,
+%                            xtick distance = 1,
+%                            ytick distance = 1,
+%                            grid = both,
+%                            minor tick num = 1,
+%                            major grid style = {gray},
+%                            minor grid style = {gray!25},
+%                            width = \textwidth,
+%                            height = \textwidth
+%                            ]
+%                        \draw[very thick,->] (axis cs:0,0)->(axis cs:1,0) node[below, midway] {$\vect{i}$};
+%                        \draw[very thick,->] (axis cs:0,0)->(axis cs:0,1) node[left, midway] {$\vect{j}$};
+%                        \draw (axis cs:0,0) circle node [left, below] {$O$};
+%
+%
+%                        \draw [->,blue,very thick] (axis cs:-4,5) -- (axis cs:-2,1) node[above, midway] {$\vect{\beta}$};
+%                        \filldraw[blue] (axis cs:-4,5) circle (1pt);
+%                        \filldraw[blue] (axis cs:-2,1) circle (1pt);
+%
+%                        \draw [->,blue,very thick] (axis cs:-4,6) -- (axis cs:-3,3) node[above, midway] {$\vect{\epsilon}$};
+%                        \filldraw[blue] (axis cs:-4,6) circle (1pt);
+%                        \filldraw[blue] (axis cs:-3,3) circle (1pt);
+%
+%                        \draw [->,blue,very thick] (axis cs:-5,3) -- (axis cs:-4,-1) node[above, midway] {$\vect{\gamma}$};
+%                        \filldraw[blue] (axis cs:-5,3) circle (1pt);
+%                        \filldraw[blue] (axis cs:-4,-1) circle (1pt);
+%
+%                        \draw [->,blue,very thick] (axis cs:4,-6) -- (axis cs:2,0) node[above, midway] {$\vect{\pi}$};
+%                        \filldraw[blue] (axis cs:4,-6) circle (1pt);
+%                        \filldraw[blue] (axis cs:2,0) circle (1pt);
+%
+%                        \draw [->,blue,very thick] (axis cs:1,2) -- (axis cs:-2,0) node[above, midway] {$\vect{\sigma}$};
+%                        \filldraw[blue] (axis cs:1,2) circle (1pt);
+%                        \filldraw[blue] (axis cs:-2,0) circle (1pt);
+%
+%                        \draw [->,blue,very thick] (axis cs:-5,-3) -- (axis cs:0,0) node[above, midway] {$\vect{\upsilon}$};
+%                        \filldraw[blue] (axis cs:-5,-3) circle (1pt);
+%                        \filldraw[blue] (axis cs:0,0) circle (1pt);
+%
+%                    \end{axis}
+%
+%                \end{tikzpicture}
+%            \end{center}
+%--------------------------------------------------------------------------------------
+%	exoAffineReprEtExpression()
+%        \Question Représentation et Expression algébrique de fonctions affines
+%                    \begin{multicols}{2}
+%                    \begin{parts}
+%                        \Part[6] Représentez graphiquement les fonctions suivantes :
+%                        \begin{enumerate}
+%
+%                                                \item {\color{blue} $t(x)=3x + \dfrac{5}{4}$}
+%
+%                                                \item {\color{blue} $u(x)=\dfrac{-3}{4}x + \dfrac{1}{4}$}
+%
+%                                                \item {\color{blue} $v(x)=\dfrac{2}{3}x - \dfrac{4}{3}$}
+%
+%                        \end{enumerate}
+%                        \Part[6] Donnez les expressions algébrique des fonctions associées aux droites suivantes :
+%                        \begin{enumerate}
+%
+%                            \item $\mathcal{C}_i$ : {\color{red} $i(x)=\dfrac{9}{4}x + \dfrac{11}{4}$}
+%                            \item $\mathcal{C}_j$ : {\color{red} $j(x)=x + \dfrac{1}{4}$}
+%                            \item $\mathcal{C}_m$ : {\color{red} $m(x)=\dfrac{3}{2}x - \dfrac{1}{4}$}
+%                        \end{enumerate}
+%                    \end{parts}
+%                        \vfill
+%                        \columnbreak
+%                        \begin{center}
+%                            \begin{tikzpicture}[scale=1]
+%                                \begin{axis}[
+%                                    scale only axis,
+%                                    grid=major,
+%                                    axis lines=middle,
+%                                    inner axis line style={=>},
+%                                    ytick={-5,-4,...,5},
+%                                    xtick={-5,-4,...,5},
+%                                    ymin=-5,
+%                                    ymax=5,
+%                                    xmin=-5,
+%                                    xmax=5,
+%                                ]
+%                                \addplot[thick, color=red] {9/4*x+11/4} node[above, sloped, pos = 0.550000000000000] {$\mathcal{C}_i$};
+%        \addplot[thick, color=red] {1*x+1/4} node[above, sloped, pos = 0.925000000000000] {$\mathcal{C}_j$};
+%        \addplot[thick, color=red] {3/2*x+-1/4} node[above, sloped, pos = 0.800000000000000] {$\mathcal{C}_m$};
+%        \addplot[thick, color=blue] {3*x+5/4} node[above, sloped, pos = 0.575000000000000] {$\mathcal{C}_t$};
+%        \addplot[thick, color=blue] {-3/4*x+1/4} node[above, sloped, pos = 0.95] {$\mathcal{C}_u$};
+%        \addplot[thick, color=blue] {2/3*x+-4/3} node[above, sloped, pos = 0.95] {$\mathcal{C}_v$};
+%
+%                                \end{axis}
+%                            \end{tikzpicture}
+%                        \end{center}
+%                    \end{multicols}
+%                    Zone de travail :
+%                    \fillwithlines{90mm}
+%--------------------------------------------------------------------------------------
+%	exoResoudreEqProduitN2()
+%            \Question[12] Résoudre les équations suivantes :
+%                        \begin{multicols}{2}
+%                                \begin{enumerate}
+%                                        \item $(- \dfrac{8}{3}a- \dfrac{2}{3})(\dfrac{9}{4}a+\dfrac{5}{2})=0 $    
+%                            \begin{flushright}
+%                                    $\Longrightarrow S=\lbrace{\color{red} - \dfrac{10}{9};- \dfrac{1}{4}}\rbrace$
+%                            \end{flushright}
+%                                        \item $(- \dfrac{7}{3}h- \dfrac{2}{3})(\dfrac{7}{4}h+3)=0 $
+%                            \begin{flushright}
+%                                    $\Longrightarrow S=\lbrace{\color{red} - \dfrac{12}{7};- \dfrac{2}{7}}\rbrace$
+%                            \end{flushright}
+%                                        \item $(- \dfrac{5}{3}i- \dfrac{3}{4})(\dfrac{1}{3}i+\dfrac{1}{2})=0 $    
+%                            \begin{flushright}
+%                                    $\Longrightarrow S=\lbrace{\color{red} - \dfrac{3}{2};- \dfrac{9}{20}}\rbrace$
+%                            \end{flushright}
+%                                        \item $(- \dfrac{5}{3}l+\dfrac{1}{4})(\dfrac{1}{2}l+\dfrac{3}{4})=0 $     
+%                            \begin{flushright}
+%                                    $\Longrightarrow S=\lbrace{\color{red} - \dfrac{3}{2};\dfrac{3}{20}}\rbrace$
+%                            \end{flushright}
+%                                        \item $(- \dfrac{11}{4}v- \dfrac{7}{4})(- \dfrac{3}{2}v- \dfrac{4}{3})=0 $
+%                            \begin{flushright}
+%                                    $\Longrightarrow S=\lbrace{\color{red} - \dfrac{8}{9};- \dfrac{7}{11}}\rbrace$
+%                            \end{flushright}
+%                                        \item $(- \dfrac{4}{3}y- \dfrac{1}{4})(\dfrac{3}{4}y+\dfrac{7}{3})=0 $
+%                            \begin{flushright}
+%                                    $\Longrightarrow S=\lbrace{\color{red} - \dfrac{28}{9};- \dfrac{3}{16}}\rbrace$
+%                            \end{flushright}
+%
+%                                \end{enumerate}
+%                        \end{multicols}
+%--------------------------------------------------------------------------------------
+% Calcul mental niveau 1 ( entiers naturels de 1 à 9 +-*)
+%        \Question[9] Calculer les expressions suivantes :
+%                \begin{multicols}{3}
+%                        \begin{enumerate}
+%
+%        \item $5 + 8 = ...............$
+%        \item $1 - 7 = ...............$
+%        \item $5 + 7 = ...............$
+%        \item $5 - 4 = ...............$
+%        \item $4 - 7 = ...............$
+%        \item $2 - 1 = ...............$
+%        \item $3 - 8 = ...............$
+%        \item $2 \times 9 = ...............$
+%        \item $4 \times 8 = ...............$
+%                        \end{enumerate}
+%                \end{multicols}
+%
+%        \Question[9] Calculer les expressions suivantes :
+%                \begin{multicols}{3}
+%                        \begin{enumerate}
+%
+%        \item $5 + 8 = {\color{red}13}$
+%        \item $1 - 7 = {\color{red}-6}$
+%        \item $5 + 7 = {\color{red}12}$
+%        \item $5 - 4 = {\color{red}1}$
+%        \item $4 - 7 = {\color{red}-3}$
+%        \item $2 - 1 = {\color{red}1}$
+%        \item $3 - 8 = {\color{red}-5}$
+%        \item $2 \times 9 = {\color{red}18}$
+%        \item $4 \times 8 = {\color{red}32}$
+%                        \end{enumerate}
+%                \end{multicols}
+%----------------------------------------------------------------------------------------
+%\Question[18] Complétez le tableau de signe et de variation pour $b(x)=\dfrac{-1}{4}x - \dfrac{3}{4}$
+%    \begin{tikzpicture}
+%        \tkzTabInit{$x$ / 1 , Signe de $b$ / 2, Variation de $b$ / 2}{ , , }
+%    \end{tikzpicture}
+%
+%\Question[18] Complétez le tableau de signe et de variation pour $l(x)=\dfrac{-5}{3}x + 2$
+%    \begin{tikzpicture}
+%        \tkzTabInit{$x$ / 1 , Signe de $l$ / 2, Variation de $l$ / 2}{ , , }
+%    \end{tikzpicture}
+%
+%
+%
+%\Question[18] Complétez le tableau de signe et de variation pour $b(x)=\dfrac{-1}{4}x - \dfrac{3}{4}$
+%    \begin{tikzpicture}
+%        \tkzTabInit{$x$ / 1 , Signe de $b$ / 2, Variation de $b$ / 2}{$-\infty$, ${\color{red}-3}$, $+\infty$}
+%        \tkzTabLine{, \text{{\color{red}+} } , {\color{red}0}, \text{{\color{red}-}} , }
+%        \tkzTabVar{+/ ${\color{red}+\infty}$, R/ 0 , -/ ${\color{red}-\infty}$}
+%        \tkzTabIma{1}{3}{2}{${\color{red}0}$}
+%    \end{tikzpicture}
+%
+%\Question[18] Complétez le tableau de signe et de variation pour $l(x)=\dfrac{-5}{3}x + 2$
+%    \begin{tikzpicture}
+%        \tkzTabInit{$x$ / 1 , Signe de $l$ / 2, Variation de $l$ / 2}{$-\infty$, ${\color{red}\dfrac{6}{5}}$, $+\infty$}
+%        \tkzTabLine{, \text{{\color{red}+} } , {\color{red}0}, \text{{\color{red}-}} , }
+%        \tkzTabVar{+/ ${\color{red}+\infty}$, R/ 0 , -/ ${\color{red}-\infty}$}
+%        \tkzTabIma{1}{3}{2}{${\color{red}0}$}
+%    \end{tikzpicture}
+%----------------------------------------------------------------------------------------
+%    \Question Le graphique ci-dessous représente l'évolution d'une action boursière. La droite $(\mathcal{C})$ représente la 
+%fonction $C(x)=\dfrac{5}{8}x + 2$ (moyenne centrée de l'action boursière).
+%    \begin{center}
+%        \begin{tikzpicture}[scale=1]
+%            \begin{axis}[
+%                        grid= both ,
+%                        minor tick num=1,
+%                        minor grid style={line width=.1pt, dashed       },
+%                        major grid style={line width=.4pt},
+%                        width=0.8\textwidth ,
+%                        xlabel = {Heure} ,
+%                        ylabel = {Valeur} ,
+%                        xmin = 0, xmax = 10,
+%                        ymin = 0, ymax = 10,
+%                        yticklabel style={
+%                        /pgf/number format/.cd,%
+%                        scaled y ticks = false,
+%                        set thousands separator={},
+%                        fixed
+%                        },
+%                        %legend entries={Courbe 1, Courbe 2},
+%                        %legend style={at={(0,1)},anchor=north west}
+%                        ]
+%                \addplot [very thin] coordinates {(0.05,1.01) (0.10,2.63) (0.15,1.94) (0.20,1.26) (0.25,1.90) (0.30,1.40) (0.35,1.61) (0.40,2.07) (0.45,2.71) (0.50,1.54) (0.55,2.72) (0.60,1.84) (0.65,2.55) (0.70,2.85) (0.75,2.26) (0.80,1.85) (0.85,3.09) (0.90,2.71) (0.95,2.80) (1.00,2.09) (1.05,2.13) (1.10,2.31) (1.15,2.34) (1.20,2.60) (1.25,3.35) (1.30,2.68) (1.35,3.38) (1.40,2.78) (1.45,3.51) (1.50,2.64) (1.55,3.02) (1.60,2.36) (1.65,2.80) (1.70,3.17) (1.75,2.28) (1.80,3.06) (1.85,2.62) (1.90,3.13) (1.95,2.45) (2.00,3.09) (2.05,3.58) (2.10,3.35) (2.15,3.87) (2.20,3.19) (2.25,3.15) (2.30,4.12) (2.35,3.94) (2.40,3.68) (2.45,4.11) (2.50,3.84) (2.55,3.49) (2.60,3.46) (2.65,4.09) (2.70,3.86) (2.75,3.10) (2.80,3.59) (2.85,3.95) (2.90,3.50) (2.95,3.28) (3.00,3.75) (3.05,3.82) (3.10,3.72) (3.15,4.01) (3.20,3.43) (3.25,4.41) (3.30,4.36) (3.35,3.99) (3.40,3.64) (3.45,4.25) (3.50,3.63) (3.55,4.11) (3.60,4.31) (3.65,4.75) (3.70,3.99) (3.75,4.56) (3.80,4.82) (3.85,4.78) (3.90,4.02) (3.95,4.16) (4.00,4.38) (4.05,4.08) (4.10,4.42) (4.15,4.19) (4.20,4.80) (4.25,4.63) (4.30,4.35) (4.35,4.61) (4.40,4.78) (4.45,4.79) (4.50,4.52) (4.55,4.75) (4.60,4.79) (4.65,4.73) (4.70,5.02) (4.75,4.61) (4.80,5.04) (4.85,5.03) (4.90,4.71) (4.95,4.91) (5.00,4.95) 
+%(5.05,4.85) (5.10,5.20) (5.15,5.22) (5.20,5.40) (5.25,5.52) (5.30,5.16) (5.35,5.04) (5.40,5.27) (5.45,5.60) (5.50,5.26) (5.55,5.43) (5.60,5.23) (5.65,5.25) (5.70,5.50) (5.75,5.30) (5.80,5.80) (5.85,5.71) (5.90,5.71) (5.95,5.62) (6.00,5.74) (6.05,5.63) (6.10,5.83) (6.15,5.92) (6.20,5.69) (6.25,6.01) (6.30,6.01) (6.35,5.93) (6.40,5.86) (6.45,5.99) (6.50,5.98) (6.55,6.20) (6.60,6.25) (6.65,5.98) (6.70,6.13) (6.75,6.18) (6.80,6.25) (6.85,6.34) (6.90,6.16) (6.95,6.36) (7.00,6.25) (7.05,6.37) (7.10,6.30) (7.15,6.44) (7.20,6.47) (7.25,6.52) (7.30,6.47) (7.35,6.55) (7.40,6.66) (7.45,6.66) (7.50,6.67) (7.55,6.64) (7.60,6.70) (7.65,6.78) (7.70,6.76) (7.75,6.84) (7.80,6.83) (7.85,6.87) (7.90,6.89) (7.95,6.94) (8.00,6.97) (8.05,7.00) };
+%
+%                \addplot [very thick] expression[domain=0:10]{5/8*x + 2} node[above, sloped, pos = 0.2] {($\mathcal{C})$};   
+%                \addplot [dashed, thin] expression[domain=0:10]{1/2*x + 3} node[above, sloped, pos = 0.2] {($\mathcal{H}$)}; 
+%                \addplot [dashed, thin] expression[domain=0:10]{3/4*x + 1} node[above, sloped, pos = 0.2] {($\mathcal{B}$)}; 
+%                \end{axis}
+%        \end{tikzpicture}
+%    \end{center}
+%    \begin{parts}
+%        \Part déterminez l'expression de la fonction $H(x)$ représenté par la droite $(\mathcal{H})$.
+%            \begin{solution}
+%                On remarque que la représentation graphique de $H(x)$ passe par le point de coordonnées $A(0;3)$ et le point 
+%de coordonnées $B(8;7)$ \\
+%                La représentation graphique de $H(x)$ est une droite non verticale donc son expression algébrique est de forme affine soit :
+%                $H(x)=ax+b$ avec $a=\dfrac{y_b-y_a}{x_b-x_a}$ et $b=y_a-ax_a$\\
+%                en appliquant, on obtient :\\
+%                \begin{center}
+%                    $a=\dfrac{4}{8}=\dfrac{1}{2}$ et $b=2-\dfrac{1}{2}\times 0=3$
+%                \end{center}
+%                d'où {\color{red}$H(x)=\dfrac{1}{2}x+3$}
+%            \end{solution}
+%        \Part En considérant que la droite $(\mathcal{H})$ représente le maximum de l'action boursière et la droite $(\mathcal{B})$ le minimum de la valeur.\\
+%                Quelles sont les valeurs minimales et maximales de l'action boursière à 4h et 5h ?
+%            \begin{solution}
+%                Les valeurs hautes à 4h et 5h sont $5$ et $\dfrac{11}{2}$\\
+%                Les valeurs basses à 4h et 5h sont $4$ et $\dfrac{19}{4}$
+%            \end{solution}
+%        \Part déterminez (par le calcul), le point d'intersection des droites $(\mathcal{C})$ et $(\mathcal{H})$.
+%                \begin{solution}
+%                Les deux droites se croisent lorsque $C(x)=H(x)$.\\
+%                Nous résolvons donc cette équation :
+%                \begin{align*}
+%                    C(x)&=H(x)\\
+%                    \dfrac{5}{8}x + 2&=\dfrac{1}{2}x + 3\\
+%                    \dfrac{1}{8}x&=1\\
+%                        x&=8
+%                \end{align*}
+%                il reste à calculer l'image par l'une des deux fonctions.
+%                \begin{align*}
+%                    C(8)&=\dfrac{5}{8} \times 8 + (2)\\
+%                                    &=7
+%                \end{align*}
+%                donc le point d'intersection de $\mathcal{C}$ et $\mathcal{H}$ a pour coordonnées {\color{red}$(8;7)$}       
+%            \end{solution}
+%        \end{parts}
+%--------------------------------------------------------------------------------
+%\Question Une entreprise de textile emploie 300 personnes dans le secteur confection. Il est composé de trois ateliers.\\   
+%        L'atelier de stylisme est constitué de 140 personnes.\\L'atelier de découpe est constitué de 80 personnes.\\Le reste du personnel travaille dans l'atelier de couture. Après une étude sur l'absentéisme, le directeur des ressources humaines a constaté que sur une année :
+%        \begin{enumerate}
+%                \item $46\%$ des stylistes ont eu au moins une absence;
+%                \item $50\%$ du personnel de découpe ont eu au moins une absence;
+%                \item $47\%$ du personnel de l'atelier de couture n'ont pas eu d'absence.
+%        \end{enumerate}
+%        On choisit une personne au hasard dans cette entreprise et l'on admet que chaque personne a la même probabilité d'être choisie.\\
+%        On note :
+%        \begin{enumerate}
+%                \item S l'évènement : « la personne choisie travaille à l'atelier de stylisme »;
+%                \item D l'événement : « la personne choisie travaille à l'atelier de découpe »;
+%                \item C l'événement : « la personne choisie travaille à l'atelier de couture »;
+%                \item A l'événement : « la personne choisie a eu au moins une absence ».
+%        \end{enumerate}
+%        Rappel : Si M et N sont deux événements, on note $\overline{M}$ l'événement contraire de l'événement M et $p_N(M)$ la probabilité de l'événement M sachant N.
+%        \begin{parts}
+%                \Part Construire un arbre pondéré décrivant la situation.
+%                        \begin{center}
+%                                % Racine à Gauche, développement vers la droite
+%                                \begin{tikzpicture}[xscale=1,yscale=1]
+%                                        % Styles (MODIFIABLES)
+%                                        \tikzstyle{fleche}=[->,>=latex,thick]
+%                                        \tikzstyle{noeud}=[fill=white,circle]
+%                                        \tikzstyle{feuille}=[fill=white,circle]
+%                                        \tikzstyle{etiquette}=[midway,fill=white]
+%                                        % Dimensions (MODIFIABLES)
+%                                        \def\DistanceInterNiveaux{3}
+%                                        \def\DistanceInterFeuilles{2}
+%                                        % Dimensions calculées (NON MODIFIABLES)
+%                                        \def\NiveauA{(0)*\DistanceInterNiveaux}
+%                                        \def\NiveauB{(1.5)*\DistanceInterNiveaux}
+%                                        \def\NiveauC{(2.5)*\DistanceInterNiveaux}
+%                                        \def\InterFeuilles{(-1)*\DistanceInterFeuilles}
+%                                        % Noeuds (MODIFIABLES : Styles et Coefficients d'InterFeuilles)
+%                                        \node[noeud] (R) at ({\NiveauA},{(2.5)*\InterFeuilles}) {};
+%                                        \node[noeud] (Ra) at ({\NiveauB},{(0.5)*\InterFeuilles}) {$S$};
+%                                        \node[feuille] (Raa) at ({\NiveauC},{(0)*\InterFeuilles}) {$A$};
+%                                        \node[feuille] (Rab) at ({\NiveauC},{(1)*\InterFeuilles}) {$\overline{A}$};
+%                                        \node[noeud] (Rb) at ({\NiveauB},{(2.5)*\InterFeuilles}) {$D$};
+%                                        \node[feuille] (Rba) at ({\NiveauC},{(2)*\InterFeuilles}) {$A$};
+%                                        \node[feuille] (Rbb) at ({\NiveauC},{(3)*\InterFeuilles}) {$\overline{A}$};
+%                                        \node[noeud] (Rc) at ({\NiveauB},{(4.5)*\InterFeuilles}) {$C$};
+%                                        \node[feuille] (Rca) at ({\NiveauC},{(4)*\InterFeuilles}) {$A$};
+%                                        \node[feuille] (Rcb) at ({\NiveauC},{(5)*\InterFeuilles}) {$\overline{A}$};
+%                                        % Arcs (MODIFIABLES : Styles)
+%                                        \draw[fleche] (R)--(Ra) node[etiquette] {$\dfrac{7}{15}$};
+%                                        \draw[fleche] (Ra)--(Raa) node[etiquette] {$46\%$};
+%                                        \draw[fleche] (Ra)--(Rab) node[etiquette] {$54\%$};
+%                                        \draw[fleche] (R)--(Rb) node[etiquette] {$\dfrac{4}{15}$};
+%                                        \draw[fleche] (Rb)--(Rba) node[etiquette] {$50\%$};
+%                                        \draw[fleche] (Rb)--(Rbb) node[etiquette] {$50\%$};
+%                                        \draw[fleche] (R)--(Rc) node[etiquette] {$\dfrac{4}{15}$};
+%                                        \draw[fleche] (Rc)--(Rca) node[etiquette] {$47\%$};
+%                                        \draw[fleche] (Rc)--(Rcb) node[etiquette] {$53\%$};
+%                                \end{tikzpicture}
+%                        \end{center}
+%\clearpage
+%                \Part Déduire des informations de l'énoncé :
+%                        \begin{multicols}{2}
+%                                \begin{subparts}
+%                                        \subpart Les probabilités p(S),p(D) et p(C) des événements S,D et C.
+%                    {\color{red}
+%                                                $p(S) = \dfrac{7}{15}$ ;
+%                        $p(D) = \dfrac{4}{15}$ ;
+%                        $p(C) = \dfrac{4}{15}$
+%                    }
+%                        \columnbreak
+%                                        \subpart Les probabilités $p_S(A)$,$p_D(A)$ et $p_C(\overline{A})$.
+%                    {\color{red}
+%                                                $p_S(A) = 46\%$ ;
+%                        $p_D(A) = 50\%$ ;
+%                        $p_C(\overline{A}) = 53\%$
+%                    }
+%                                \end{subparts}
+%                        \end{multicols}
+%                \Part Calculer la probabilité de l'événement $S\cap A$, notée $p(S\cap A)$.
+%            \begin{solution}
+%                \begin{align*}
+%                    p(S\cap A)  &= p(S) \times p_S(A)\\
+%                                &= \dfrac{7}{15} \times \dfrac{23}{50}\\
+%                                &= \dfrac{161}{750} \approx 21.4667\%
+%                \end{align*}
+%            \end{solution}
+%                \Part Démontrer que $p(A) = 0.4733$
+%            \begin{solution}
+%                \begin{align*}
+%                    p(A)        &=& &p(S\cap A) &+&  &p(D\cap A)& &+& &p(C\cap a)&\\
+%                            &=& &\dfrac{161}{750} &+&  &p(D)\times p_D(A)& &+& &p(C)\times p_C(A)&\\
+%                            &=& &\dfrac{161}{750} &+& &\dfrac{4}{15}\times \dfrac{1}{2}& &+& &\dfrac{4}{15}\times \dfrac{47}{100}&\\
+%                            &=& &\dfrac{161}{750} &+& &\dfrac{2}{15}& &+& &\dfrac{47}{375}&\\
+%                            &=& &\dfrac{71}{150} \approx0.4733
+%                \end{align*}
+%            \end{solution}
+%                \Part On sait que la personne choisie a eu au moins une absence cette année. Quelle est la probabilité que cette personne soit un styliste ?
+%            \begin{solution}
+%                \begin{align*}
+%                    p(S\cap A)  &= p(A\cap S)\\
+%                                &= p(A) \times p_A(S)\\
+%    \dfrac{p(S\cap A)}{p(A)}    &= p_A(S)\\
+%    \dfrac{\dfrac{161}{750}}{\dfrac{71}{150}} &= p_A(S)\\
+%    \dfrac{161}{355} &= p_A(S) \approx 0.4535
+%                \end{align*}
+%            \end{solution}
+%        \end{parts}
+%----------------------------------------------------------------------------------------------
+%    \Question[8] Henri a passé 16 mois en tout au Portugal et au Brésil pour apprendre le portugais.\\
+%        Au Portugal, il a appris 130 nouveaux mots en moyenne par mois, et au Brésil il a appris 110 nouveaux mots en moyenne par mois. Au total, il a appris 1960 nouveaux mots.
+%        Combien de temps Henri a-t-il passé au Portugal et combien de temps a-t-il passé au Brésil ?
+%            \fillwithlines{80mm}
+
+%\begin{tikzpicture}
+%	\foreach \x in {0, 0.5, ..., 17} {
+%		\draw[black!20] (\x, 0) -- (\x, 26);
+%		}
+%	\foreach \y in {0, 0.5, ..., 26} {
+%		\draw[black!20] (0, \y) -- (17, \y);
+%		}
+%	\foreach \x in {0, 1, ..., 17} {
+%		\draw[black!80] (\x, 0) -- (\x, 26);
+%		}
+%	\foreach \y in {0, 1, ...,26} {
+%		\draw[black!80] (0, \y) -- (17, \y);
+%		}
+%\end{tikzpicture}
+%--------------------------------------------------------------------------------------
+%\PuzzleSolution
+%\begin{Puzzle}{16}{12}
+%|{}   |[1]O |[2]P |E  |R     |A  |T     |I  |O    |N  |{}    |{}   |[3]B |{} |{} |{} |.
+%|{}   |{}   |L    |{} |{}    |{} |{}    |{} |{}   |{} |{}    |[4]R |A    |N  |G  |E  |.
+%|[5]E |{}   |A    |{} |[6]M  |{} |{}    |{} |{}   |{} |{}    |{}   |R    |{} |{} |{} |.
+%|S    |{}   |[7]C |O  |O     |R  |D     |I  |N    |A  |T     |E    |G    |R  |I  |D  |.
+%|T    |{}   |E    |{} |D     |{} |{}    |{} |{}   |{} |{}    |{}   |R    |{} |{} |{} |.
+%|I    |{}   |V    |{} |E     |{} |{}    |{} |[8]V |A  |R     |I    |A    |B  |L  |E  |.
+%|[9]M |E    |A    |N  |{}    |{} |{}    |{} |{}   |{} |{}    |{}   |P    |{} |{} |{} |.
+%|A    |{}   |L    |{} |[10]L |I  |N     |E  |G    |R  |[11]A |P    |H    |{} |{} |{} |.
+%|T    |{}   |U    |{} |{}    |{} |{}    |{} |{}   |{} |X     |{}   |{}   |{} |{} |{} |.
+%|I    |{}   |E    |{} |{}    |{} |[12]S |C  |A    |L  |E     |M    |O    |D  |E  |L  |.
+%|O    |{}   |{}   |{} |{}    |{} |{}    |{} |{}   |{} |S     |{}   |{}   |{} |{} |{} |.
+%|N    |{}   |{}   |{} |{}    |{} |{}    |{} |{}   |{} |{}    |{}   |{}   |{} |{} |{} |.
+%\end{Puzzle}
+%
+%\begin{PuzzleClues}{\textbf{Across}}
+%\Clue{1}{OPERATION}{Any mathematical process}
+%\Clue{4}{RANGE}{The lowest value in a set of numbers through the highest value in the set}
+%\Clue{7}{COORDINATEGRID}{A network of lines used for locating points}
+%\Clue{8}{VARIABLE}{Any symbol that could represent a number}
+%\Clue{9}{MEAN}{Average}
+%\Clue{10}{LINEGRAPH}{Graph that displays data using line segments}
+%\Clue{12}{SCALEMODEL}{A model or drawing based on a ratio}
+%\end{PuzzleClues}
+%
+%\begin{PuzzleClues}{\textbf{Down}}
+%\Clue{2}{PLACEVALUE}{the positions of a single digit in the whole number}
+%\Clue{3}{BARGRAPH}{A graph that uses bars to display data}
+%\Clue{5}{ESTIMATION}{The use of rounding to determine a reasonable answer}
+%\Clue{6}{MODE}{The number found most often}
+%\Clue{11}{AXES}{The horizontal and vertical number lines used in a graph}
+%\end{PuzzleClues}
+
+%------------------------------------------------------------------------------------------
+
+%\clearpage
+%
+%\section{Rappel de cours}
+%	\subsection{Les symboles mathématiques}
+%		\begin{center}
+%			\begin{tabular}{p{8cm}p{7cm}}
+%				\textit{Symboles} & \textit{Exemples} \\ \hline
+%				$\exists$  : Il existe & \\ \hline
+%				$\exists!$ : Il existe un et un seul & \\ \hline
+%				$\nexists$ : Il n'existe pas & \\ \hline
+%				$\forall$ : Quelque soit & $\forall$ \\ \hline
+%				$\lor$ : ou & \\ \hline
+%				$\land$ : et & \\ \hline
+%				$\Rightarrow$ : implique & $a^2 = 25 \Rightarrow a=5$ \\ \hline
+%				$\Leftrightarrow$ : est équivalent à & $a=b \Leftrightarrow b=a$\\ \hline
+%				$\perp$ : est perpendiculaire à & \\ \hline
+%				$\not\perp$ : n'est pas perpendiculaire à & \\ \hline
+%				$\|$ : est parallèle à & \\ \hline
+%				$\nparallel$ : n'est pas parallèle à & \\ \hline
+%				$\in$ : appartient à & $\left\{ 4 \right\} \in \left\{ 1,2,3,4,5,6,7 \right\}$ \\ \hline
+%				$\notin$ : n'appartient pas à & $\left\{ 10 \right\} \notin \left\{ 1,2,3,4,5,6,7 \right\} $\\ \hline
+%				$<$ : est inférieure à  & $5<9$ \\ \hline
+%				$\leqslant$ : est inférieure ou égale à & \\ \hline
+%				$>$ : est supérieure à & $4>3$\\ \hline
+%				$\geqslant$ : est supérieure ou égale à & \\ \hline
+%				$\mapsto$ ou $\longmapsto$  : associe & $f:x\longmapsto 2x+1$ \\ \hline
+%				
+%			\end{tabular}
+%		\end{center}
+%\clearpage
+%	\subsection{Les puissances}
+%		\begin{tabular}{p{6.5cm}p{8.5cm}}
+%		%						\hline 
+%								\textit{Formules} & \textit{Exemples} \\ 
+%								\hline 
+%								${ a }^{ 0 }=1$ & ${ 12 }^{ 0 }=1$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								${ a }^{ 1 }=a$ & ${ 7 }^{ 1 }=7$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								${ a }^{ 2 }=a\times a$ & ${ 5 }^{ 2 }=5\times5=25$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								${ a }^{ 3 }=a\times a\times a$ & ${ 2 }^{ 3 }=2\times2\times2=8$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								${ a }^{ n }=a\times a\times.....\times a$ & ${ 3 }^{ 4 }=3\times3\times3\times3=81$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								$\displaystyle { a }^{ \frac{1}{2} }=\sqrt{a}=\sqrt[2]{a}$ & $\displaystyle { 9 }^{ \frac{1}{2} }=\sqrt{9}=\sqrt[2]{9}=3$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								$\displaystyle { a }^{ \frac{1}{n} }=\sqrt[n]{a}$ & $\displaystyle { 27 }^{ \frac{1}{3} }=\sqrt[3]{27}=3$ car $3\times3\times3=27$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								$\displaystyle { a }^{ n }\times{ a }^{ m }={ a }^{ n+m }$ & $\displaystyle { 10 }^{ 2 }\times{ 10 }^{ 7 }={ 10 }^{ (2+7) }={ 10 }^{ 9 }$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								$\displaystyle \frac{1}{{ a }^{ m }}={ a }^{ -m }$ & $\displaystyle \frac{1}{{ 10 }^{ 2 }}={ 10 }^{ -2 }$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								$\displaystyle \frac{{ a }^{ n }}{{ a }^{ m }}={ a }^{ n-m }$ & $\displaystyle \frac{{ 10 }^{ 4 }}{{ 10 }^{ 3 }}={ 10 }^{ (4-3) }={ 10 }^{ 1 }=10$ \rule[-15pt]{0pt}{40pt}\\ \hline
+%								$\displaystyle \frac{{ a }^{ n }}{{ a }^{ m }}={ a }^{ (n-m) }$ & $\displaystyle \frac{{ 10 }^{ 5 }}{{ 10 }^{ 2 }}={ 10 }^{ 5-2 }={10}^{3}$ \rule[-20pt]{0pt}{50pt}\\ 
+%		\end{tabular}
+%\clearpage
+%
+%\section{Développer}
+%
+%	\textbf{Développer} un produit, c'est l'écrire sous la forme d'une somme (ou d'une différence). 
+%
+%	\begin{enumerate}
+%		\item $k(a+b)=ka+kb$
+%		\item $k(a-b)=ka-kb$
+%		\item $(a+b)(c+d)=ac+ad+bc+bd$
+%	\end{enumerate}
+%
+%	Identités remarquables (Développement) :
+%	\begin{enumerate}
+%		\item $\displaystyle {(a+b)}^{2}={a}^{2}+2ab+{b}^{2}$
+%		\item $\displaystyle {(a-b)}^{2}={a}^{2}-2ab+{b}^{2}$
+%		\item $\displaystyle (a+b)(a-b)=a^{2}-b^{2}$
+%	\end{enumerate}
+%		
+%\section{Factoriser}
+%	\textbf{Factoriser} une somme (ou une différence), c'est l'écrire sous la forme d'un produit. 
+%
+%	\begin{enumerate}
+%		\item $ka+kb=k(a+b)$
+%		\item $ka-kb=k(a-b)$
+%	\end{enumerate}
+%	k est le facteur commun 
+%
+%	\begin{enumerate}
+%		\item \textbf{Avec des carrés :}\\
+%		Pour factoriser ${(x+1)}^{2}+(x+1)(x+2)$, on utilise le fait que ${(x+1)}^{2}=(x+1)(x+1)$ ce qui fait apparaître le facteur commun $(x+1)$ :\\
+%		$(x+1)^{2}+(x+1)(x+2)=\color{red}{(x+1)}\color{black}{(x+1)}+\color{red}{(x+1)}\color{black}{(x+2)}$\\
+%		$=(x+1)[(x+1)+(x+2)]$\\
+%		$=(x+1)(2x+3)$
+%		\item \textbf{Attention à ne pas oublier le 1 !}\\
+%		Pour factoriser $x^{2}-x$ on écrit que $x^{2}=x\times x$ et $x=x\times 1$;\\
+%		$x$ est alors facteur commun :\\
+%		$x^{2}-x = \color{red}{x} \color{black}{\times x}-\color{red}{x}\color{black}{\times 1 =} \color{red}{x} \color{black}{(x-1)}$
+%	\end{enumerate}
+%
+%	Identités remarquables (Factorisation) :
+%	\begin{enumerate}
+%		\item $a^2+2ab+b^2=(a+b)^2$
+%		\item $a^2-2ab+b^2=(a-b)^2$
+%		\item $(a+b)(a-b)=a^2-b^2$
+%	\end{enumerate}
+%\clearpage
+%
+%	\section{Probabilité}
+%		\begin{itemize}
+%			\item $P(\Omega)=1$ et $P(\varnothing)=0$
+%			\item Pour tout évènement $A$, $0\leqslant P(A)\leqslant 1$
+%			\item Dans une situation d'équiprobabilité, pour tout évènement $A$,
+%				\begin{center}
+%					$P(A)=\dfrac{\text{Nombre d'issues de A}}{\text{Nombre totale d'issues}}$
+%				\end{center}
+%			\item $P(\bar{A})=1-P(A)$
+%			\item $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+%			\item $\bar{A\cup B}=\bar{A}\cap\bar{B}$ et $\bar{A\cap B}=\bar{A}\cup\bar{B}$
+%			\item $P_A(B)=\dfrac{P(A\cap B)}{P(A)}$ d'où $P(A\cap B)=P(A)\times P_A(B)$
+%		\end{itemize}
+%	\section{Nombre de Bernoulli}
+%		\begin{center}
+%			$\frac{n!}{k!(n - k)!} = \binom{n}{k} = C_{n}^k$
+%		\end{center}
+%	\section{Loi Binomiale}
+%
+%			\begin{itemize}
+%			\item $P(X=k)=\binom{n}{k}\times p^k\times (1-p)^{(n-k)}$
+%			\item $P(X=k)$ est la probabilité d'obtenir exactement k succès parmi les n expériences.
+%			\item $P(X\leqslant k)$ est la probabilité d'obtenir au plus k succès parmi les n expériences.
+%			\item $P(X>k)=1-P(X\leqslant k)$
+%		\end{itemize}
+%	\section{Taux d'évolution}
+%		\begin{itemize}
+%			\item Une quantité évolue d'une valeur initiale $y_1$ à une valeur finale $y_2$. Le taux d'évolution $t$ de $y_1$ à $y_2$ est : $t=\dfrac{y_1-y_2}{y_1}$
+%			\item Faire subir une évolution de taux $t$, c'est multiplier une quantité par le coefficient multiplicateur $1+t$
+%		\end{itemize}
+%			
+%	\section{Taux réciproque}
+%		\begin{itemize}
+%			\item Si une quantité subit une évolution de taux $t\neq-1$, l'évolution réciproque de taux $t'$ vérifie $t'=\dfrac{1}{1+t}-1$
+%		\end{itemize}
+%	\section{Évolution successives}
+%		\begin{itemize}
+%			\item Si une quantité subit $n$ évolutions de taux respectifs $t_1$, $t_2$,..., $t_n$ , alors le taux global $T$ vérifie $T=(1+t_1)(1+t_2)...(1+t_n)-1$
+%		\end{itemize}
+%	\section{Taux d'évolution moyen}
+%		\begin{itemize}
+%			\item Racine $n^{ième}$ :Soit $n$ un entier supérieur ou égal à 2, et $a$ un réel positif. La racine $n^{ième}$ du réel $a$ est le réel positif $x$ tel que $x^n=a$. On note ce réel $a^{\frac{1}{n}}$ (et aussi $\sqrt[n]{a}$)
+%			\item Si une quantité subit $n$ évolutions dont le taux global est $T$, alors le taux moyen $t_M$ vérifie $t_M =(1+ T)^{\frac{1}{n}}-1$
+%		\end{itemize}
